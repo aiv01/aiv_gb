@@ -1,5 +1,6 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
+#include <stdio.h>
 #define INIT_GB       \
     aiv_gameboy gb;   \
     aiv_gb_init(&gb); \
@@ -11,18 +12,18 @@ TEST(set_carry_bool)
 {
     INIT_GB;
     ASSERT_THAT(!GET_C(&gb));
-    SET_C_BOOL(gb, 1);
+    SET_C_BOOL(gb, 2 < 5);
     ASSERT_THAT(GET_C(&gb) == 0x10);
-    SET_C_BOOL(gb, 0);
+    SET_C_BOOL(gb, 5 > 6);
     ASSERT_THAT(!GET_C(&gb));
 }
 TEST(set_half_bool)
 {
     INIT_GB;
     ASSERT_THAT(!GET_H(&gb));
-    SET_H_BOOL(gb, 1);
+    SET_H_BOOL(gb, 1 == 1);
     ASSERT_THAT(GET_H(&gb) == 0x20);
-    SET_H_BOOL(gb, 0);
+    SET_H_BOOL(gb, 0 == 1);
     ASSERT_THAT(!GET_H(&gb));
 }
 TEST(set_zero_bool)
@@ -176,7 +177,7 @@ TEST(_aiv_gb_set_flags_internal_carry)
     gb.a = 12;
     _aiv_gb_set_flags_internal(&gb, 14);
     ASSERT_THAT(gb.a == 254);
-    ASSERT_THAT(GET_C((&gb)));
+    ASSERT_THAT(IS_C_SETTED((&gb)));
     ASSERT_THAT(GET_N((&gb)));
     ASSERT_THAT(GET_H((&gb)));
     ASSERT_THAT(!GET_Z((&gb)));
@@ -190,7 +191,7 @@ TEST(_aiv_gb_set_flags_internal_half)
     gb.a = 6;
     _aiv_gb_set_flags_internal(&gb, 10);
     ASSERT_THAT(gb.a == 252);
-    ASSERT_THAT(GET_C((&gb)));
+    ASSERT_THAT(IS_C_SETTED((&gb)));
     ASSERT_THAT(GET_N((&gb)));
     ASSERT_THAT(GET_H((&gb)));
     ASSERT_THAT(!GET_Z((&gb)));
