@@ -1,12 +1,11 @@
 #include <aiv_gb.h>
-
 void _aiv_gb_set_flags_internal(aiv_gameboy *gb, u8_t to_sub)
 {
-    SET_C_BOOL((*gb), (gb->a < to_sub));
-    SET_H_BOOL((*gb), (((gb->a & 0x0f) - to_sub) & 0xf0));
+    SET_C_BOOL(*gb, gb->a < to_sub);
+    SET_H_BOOL(*gb, ((gb->a & 0x0f) - to_sub) & 0xf0);
     gb->a -= to_sub;
-    SET_Z_BOOL((*gb), !(gb->a));
-    SET_N((*gb));
+    SET_Z_BOOL(*gb, !(gb->a));
+    SET_N(*gb);
 }
 //SUB B
 static int aiv_gb_opcode_90(aiv_gameboy *gb)
@@ -75,7 +74,7 @@ static int aiv_gb_opcode_97(aiv_gameboy *gb)
 //SBC A,B
 static int aiv_gb_opcode_98(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->b + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->b + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -83,7 +82,7 @@ static int aiv_gb_opcode_98(aiv_gameboy *gb)
 //SBC A,C
 static int aiv_gb_opcode_99(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->c + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->c + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -91,7 +90,7 @@ static int aiv_gb_opcode_99(aiv_gameboy *gb)
 //SBC A,D
 static int aiv_gb_opcode_9a(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->d + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->d + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -99,7 +98,7 @@ static int aiv_gb_opcode_9a(aiv_gameboy *gb)
 //SBC A,E
 static int aiv_gb_opcode_9b(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->e + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->e + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -107,7 +106,7 @@ static int aiv_gb_opcode_9b(aiv_gameboy *gb)
 //SBC A,H
 static int aiv_gb_opcode_9c(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->h + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->h + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -115,7 +114,7 @@ static int aiv_gb_opcode_9c(aiv_gameboy *gb)
 //SBC A,L
 static int aiv_gb_opcode_9d(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->l + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->l + IS_C_SETTED(gb));
 
     return 4;
 }
@@ -123,7 +122,7 @@ static int aiv_gb_opcode_9d(aiv_gameboy *gb)
 //SBC A,(HL)
 static int aiv_gb_opcode_9e(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, aiv_gb_memory_read8(gb, gb->hl) + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, aiv_gb_memory_read8(gb, gb->hl) + IS_C_SETTED(gb));
 
     return 8;
 }
@@ -131,7 +130,7 @@ static int aiv_gb_opcode_9e(aiv_gameboy *gb)
 //SBC A,A
 static int aiv_gb_opcode_9f(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->a + GET_C(gb));
+    _aiv_gb_set_flags_internal(gb, gb->a + IS_C_SETTED(gb));
 
     return 4;
 }

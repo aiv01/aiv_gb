@@ -11,21 +11,25 @@ typedef unsigned long long u64_t;
 #define SET_Z_BOOL(gb, boolean) ((gb).f = (0x80 & ((boolean) << 7)))
 #define UNSET_Z(gb) ((gb).f &= ~0x80)
 #define GET_Z(gb) ((gb)->f & 0x80)
+#define IS_Z_SETTED(gb) (GET_Z(gb) == 0x80)
 
 #define SET_N(gb) ((gb).f |= 0x40)
 #define UNSET_N(gb) ((gb).f &= ~0x40)
 #define SET_N_BOOL(gb, boolean) ((gb).f = (0x40 & ((boolean) << 6)))
 #define GET_N(gb) ((gb)->f & 0x40)
+#define IS_N_SETTED(gb) (GET_N(gb) == 0x40)
 
 #define SET_H(gb) ((gb).f |= 0x20)
 #define UNSET_H(gb) ((gb).f &= ~0x20)
 #define SET_H_BOOL(gb, boolean) ((gb).f = (0x20 & ((boolean) << 5)))
 #define GET_H(gb) ((gb)->f & 0x20)
+#define IS_H_SETTED(gb) (GET_H(gb) == 0x20)
 
 #define SET_C(gb) ((gb).f |= 0x10)
 #define UNSET_C(gb) ((gb).f &= ~0x10)
 #define SET_C_BOOL(gb, boolean) ((gb).f = (0x10 & ((boolean) << 4)))
 #define GET_C(gb) ((gb)->f & 0x10)
+#define IS_C_SETTED(gb) (GET_C(gb) == 0x10)
 
 #define CARTRIDGE_SIZE 16384
 
