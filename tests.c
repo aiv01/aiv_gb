@@ -28,6 +28,9 @@ int main(int argc, char **argv)
 {
     aiv_gb_tests_run_opcodes_00();
     aiv_gb_tests_run_opcodes_30();
+    aiv_gb_tests_run_opcodes_60();
+    aiv_gb_tests_run_opcodes_20();
+    aiv_gb_tests_run_opcodes_90();
 
     PRINT_TEST_RESULTS();
     return 0;
