@@ -16,3 +16,8 @@ TEST(or_a_b)
     ASSERT_THAT((gb.a | gb.b) == 0xd);
 
 }
+void aiv_gb_tests_run_opcodes_b0()
+{
+    RUN_TEST(or_a_b);
+    
+}

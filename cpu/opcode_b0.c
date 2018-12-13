@@ -175,3 +175,7 @@ static int check_set_h(aiv_gameboy *gb)
 
     return 0;
 }
+void aiv_gb_register_opcodes_b0(aiv_gameboy *gb)
+{
+    gb->opcodes[0xb0] = aiv_gb_opcode_b0;
+}
