@@ -1,6 +1,6 @@
 #include <aiv_gb.h>
 
-static void _aiv_gb_set_flags_internal(aiv_gameboy *gb, u8_t to_sub)
+void _aiv_gb_set_flags_internal(aiv_gameboy *gb, u8_t to_sub)
 {
     SET_C_BOOL((*gb), (gb->a < to_sub));
     SET_H_BOOL((*gb), (((gb->a & 0x0f) - to_sub) & 0xf0));

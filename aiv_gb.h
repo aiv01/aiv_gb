@@ -7,25 +7,25 @@ typedef signed short s16_t;
 typedef unsigned long long u64_t;
 
 
-#define SET_Z(gb) gb.f |= 0x80
-#define SET_Z_BOOL(gb, boolean) gb.f |= (0x80 & boolean << 7)
-#define UNSET_Z(gb) gb.f &= ~0x80
-#define GET_Z(gb) (gb->f & 0x80)
+#define SET_Z(gb) ((gb).f |= 0x80)
+#define SET_Z_BOOL(gb, boolean) ((gb).f = (0x80 & ((boolean) << 7)))
+#define UNSET_Z(gb) ((gb).f &= ~0x80)
+#define GET_Z(gb) ((gb)->f & 0x80)
 
-#define SET_N(gb) gb.f |= 0x40
-#define UNSET_N(gb) gb.f &= ~0x40
-#define SET_N_BOOL(gb, boolean) gb.f |= (0x40 & boolean << 6)
-#define GET_N(gb) (gb->f & 0x40)
+#define SET_N(gb) ((gb).f |= 0x40)
+#define UNSET_N(gb) ((gb).f &= ~0x40)
+#define SET_N_BOOL(gb, boolean) ((gb).f = (0x40 & ((boolean) << 6)))
+#define GET_N(gb) ((gb)->f & 0x40)
 
-#define SET_H(gb) gb.f |= 0x20
-#define UNSET_H(gb) gb.f &= ~0x20
-#define SET_H_BOOL(gb, boolean) gb.f |= (0x20 & boolean << 5)
-#define GET_H(gb) (gb->f & 0x20)
+#define SET_H(gb) ((gb).f |= 0x20)
+#define UNSET_H(gb) ((gb).f &= ~0x20)
+#define SET_H_BOOL(gb, boolean) ((gb).f = (0x20 & ((boolean) << 5)))
+#define GET_H(gb) ((gb)->f & 0x20)
 
-#define SET_C(gb) gb.f |= 0x10
-#define UNSET_C(gb) gb.f &= ~0x10
-#define SET_C_BOOL(gb, boolean) gb.f |= (0x10 & boolean << 4)
-#define GET_C(gb) (gb->f & 0x10)
+#define SET_C(gb) ((gb).f |= 0x10)
+#define UNSET_C(gb) ((gb).f &= ~0x10)
+#define SET_C_BOOL(gb, boolean) ((gb).f = (0x10 & ((boolean) << 4)))
+#define GET_C(gb) ((gb)->f & 0x10)
 
 #define CARTRIDGE_SIZE 16384
 
