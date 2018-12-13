@@ -46,7 +46,7 @@ void aiv_gb_init(aiv_gameboy *gb)
     //aiv_gb_register_opcodes_40(gb);
     //aiv_gb_register_opcodes_50(gb);
     aiv_gb_register_opcodes_60(gb);
-    //aiv_gb_register_opcodes_70(gb);
+    aiv_gb_register_opcodes_70(gb);
 
     //aiv_gb_register_opcodes_80(gb);
     aiv_gb_register_opcodes_90(gb);
