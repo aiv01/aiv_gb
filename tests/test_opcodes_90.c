@@ -47,6 +47,16 @@ TEST(_aiv_gb_sub_with_half)
     ASSERT_THAT(gb.pc == 0);
     ASSERT_THAT(gb.f == (NEG | CARRY | HALF));
 }
+TEST(_aiv_gb_sub_with_no_half)
+{
+    INIT_GB;
+    gb.a = 2;
+    _aiv_gb_sub_internal(&gb, 254 + (aiv_gb_get_flag(&gb, CARRY) != 0));
+    ASSERT_THAT(gb.a == 3);
+    ASSERT_THAT(gb.ticks == 0);
+    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.f == (NEG | CARRY));
+}
 TEST(opcode_90)
 {
     INIT_GB;
@@ -459,6 +469,7 @@ void aiv_gb_tests_run_opcodes_90()
     RUN_TEST(_aiv_gb_sub_with_carry);
     RUN_TEST(_aiv_gb_sub_with_zero);
     RUN_TEST(_aiv_gb_sub_with_half);
+    RUN_TEST(_aiv_gb_sub_with_no_half);
     RUN_TEST(opcode_90);
     RUN_TEST(opcode_91);
     RUN_TEST(opcode_92);
