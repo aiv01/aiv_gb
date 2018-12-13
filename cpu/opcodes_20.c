@@ -3,7 +3,7 @@
 // JR NZ, r8
 static int aiv_gb_opcode_20(aiv_gameboy *gb)
 {
-    if(GET_Z(gb) == 0)
+    if(GET_Z(gb))
     {
         gb->pc += aiv_gb_memory_read8(gb, gb->pc);
         return 12;

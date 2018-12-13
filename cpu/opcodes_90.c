@@ -1,27 +1,26 @@
 #include <aiv_gb.h>
 
-void _aiv_gb_set_flags_internal(aiv_gameboy *gb);
 static void _aiv_gb_set_flags_internal(aiv_gameboy *gb)
 {
     if (gb->a)
     {
-        UNSET_Z(gb);
+        UNSET_Z((*gb));
     }
     else
     {
-        SET_Z(gb);
+        SET_Z((*gb));
     }
 
     if (((gb->a & 0x0f) + 1) & 0xf0)
     {
-        SET_H(gb);
+        SET_H((*gb));
     }
     else
     {
-        UNSET_H(gb);
+        UNSET_H((*gb));
     }
 
-    SET_N(gb);
+    SET_N((*gb));
 }
 //SUB B
 static int aiv_gb_opcode_90(aiv_gameboy *gb)
