@@ -3,20 +3,20 @@
 
 #define AND(val, gb) \
     gb->a &= val; \
-    //SET_H(gb); \
-    // if(gb-> a == 0){ \
-    //     SET_Z(gb); \
-    // } else{ \
-    //     UNSET_Z(gb); \
-    // }
+    aiv_gb_set_flag(gb, HALF, 1); \
+    if(gb-> a == 0){ \
+        aiv_gb_set_flag(gb, ZERO, 1); \
+    } else{ \
+        aiv_gb_set_flag(gb, ZERO, 0); \
+    }
 
 #define XOR(val, gb) \
     gb->a = gb->a ^ val; \
-    // if(gb-> a == 0){ \
-    //     SET_Z(gb); \
-    // } else{ \
-    //     UNSET_Z(gb); \
-    // }
+    if(gb-> a == 0){ \
+        aiv_gb_set_flag(gb, ZERO, 1); \
+    } else{ \
+        aiv_gb_set_flag(gb, ZERO, 0); \
+    }
 
 // AND B
 static int aiv_gb_opcode_A0(aiv_gameboy *gb){
