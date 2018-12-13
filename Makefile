@@ -1,4 +1,4 @@
-CC=clang
+CC=D:\LLVM\bin\Clang
 CFLAGS=-O2 -Wall -Werror -I.
 OPCODES=$(patsubst %.c,%.o,$(wildcard cpu/*.c))
 TESTS=$(patsubst %.c,%.o,$(wildcard tests/*.c))
@@ -31,5 +31,4 @@ test: cpu.o memory.o tests.o $(OPCODES) $(TESTS)
 gameboy: $(OPCODES)
 	$(CC) -o $(BINARY) $^
 
-clean:
-	rm *.o cpu/*.o tests/*.o
+
