@@ -3,7 +3,7 @@
 //RET NC
 static int aiv_gb_opcode_d0(aiv_gameboy *gb)
 {
-    if ((gb->f & 0x10) == 0x10)
+    if (aiv_gb_get_flag(gb, CARRY))
     {
         return 8;
     }

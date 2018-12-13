@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 
 typedef unsigned char u8_t;
 typedef signed char s8_t;
@@ -6,26 +7,10 @@ typedef unsigned short u16_t;
 typedef signed short s16_t;
 typedef unsigned long long u64_t;
 
-
-#define SET_Z(gb) gb.f |= 0x80
-#define SET_Z_BOOL(gb, boolean) gb.f |= (0x80 & boolean << 7)
-#define UNSET_Z(gb) gb.f &= ~0x80
-#define GET_Z(gb) (gb->f & 0x80)
-
-#define SET_N(gb) gb.f |= 0x40
-#define UNSET_N(gb) gb.f &= ~0x40
-#define SET_N_BOOL(gb, boolean) gb.f |= (0x40 & boolean << 6)
-#define GET_N(gb) (gb->f & 0x40)
-
-#define SET_H(gb) gb.f |= 0x20
-#define UNSET_H(gb) gb.f &= ~0x20
-#define SET_H_BOOL(gb, boolean) gb.f |= (0x20 & boolean << 5)
-#define GET_H(gb) (gb->f & 0x20)
-
-#define SET_C(gb) gb.f |= 0x10
-#define UNSET_C(gb) gb.f &= ~0x10
-#define SET_C_BOOL(gb, boolean) gb.f |= (0x10 & boolean << 4)
-#define GET_C(gb) (gb->f & 0x10)
+#define ZERO 0x80
+#define NEG 0x40
+#define HALF 0x20
+#define CARRY 0x10
 
 #define CARTRIDGE_SIZE 16384
 
@@ -108,3 +93,6 @@ void aiv_gb_register_opcodes_f0(aiv_gameboy *gb);
 int aiv_gb_tick(aiv_gameboy *gb);
 int aiv_gb_loop(aiv_gameboy *gb);
 void aiv_gb_init(aiv_gameboy *gb);
+
+void aiv_gb_set_flag(aiv_gameboy *gb, u8_t flag, u8_t value);
+u8_t aiv_gb_get_flag(aiv_gameboy *gb, u8_t flag);
