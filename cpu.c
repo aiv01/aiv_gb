@@ -24,7 +24,7 @@ void aiv_gb_init(aiv_gameboy *gb)
     memset(gb, 0, sizeof(aiv_gameboy));
 
     aiv_gb_register_opcodes_00(gb);
-    //aiv_gb_register_opcodes_10(gb);
+    aiv_gb_register_opcodes_10(gb);
     //aiv_gb_register_opcodes_20(gb);
     //aiv_gb_register_opcodes_30(gb);
 
