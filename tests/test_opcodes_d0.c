@@ -11,7 +11,6 @@ TEST(pop_de)
     gb.sp -= 2;
 
     gb.cartridge[0] = 0xd1;
-
     aiv_gb_tick(&gb);
 
     ASSERT_THAT(gb.de == 0xd000);
@@ -27,7 +26,6 @@ TEST(jp_nc_a16)
     gb.cartridge[0] = 0xd2;
     gb.cartridge[1] = 0x80;
     gb.cartridge[2] = 0x80;
-
     aiv_gb_tick(&gb);
 
     ASSERT_THAT(gb.pc == 0x8080);
@@ -44,7 +42,6 @@ TEST(jp_nc_a16_red_light)
     gb.cartridge[0] = 0xd2;
     gb.cartridge[1] = 0x80;
     gb.cartridge[2] = 0x80;
-
     aiv_gb_tick(&gb);
 
     ASSERT_THAT(gb.pc == 3);
@@ -61,7 +58,6 @@ TEST(ret_nc)
     gb.sp -= 2;
 
     gb.cartridge[0] = 0xd0;
-
     aiv_gb_tick(&gb);
 
     ASSERT_THAT(gb.pc == 0xd000);
@@ -133,13 +129,72 @@ TEST(push_de)
     gb.de = 0xd000;
 
     gb.cartridge[0] = 0xd5;
-
     aiv_gb_tick(&gb);
 
     u16_t value = aiv_gb_memory_read16(&gb, gb.sp + 1);
     ASSERT_THAT(value == 0xd000);
     ASSERT_THAT(gb.pc == 1);
     ASSERT_THAT(gb.ticks == 16);
+}
+
+TEST(sub_d8)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 5;
+
+    gb.cartridge[0] = 0xd6;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 1);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 1);
+}
+
+TEST(sub_d8_zero)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 4;
+
+    gb.cartridge[0] = 0xd6;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 0);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 1);
+}
+
+TEST(sub_d8_overflow)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 4;
+
+    gb.cartridge[0] = 0xd6;
+    gb.cartridge[1] = 0x05;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 255);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 0);
 }
 
 void aiv_gb_tests_run_opcodes_d0()
@@ -156,4 +211,8 @@ void aiv_gb_tests_run_opcodes_d0()
     RUN_TEST(call_nc_a16_red_light);
 
     RUN_TEST(push_de);
+
+    RUN_TEST(sub_d8);
+    RUN_TEST(sub_d8_zero);
+    RUN_TEST(sub_d8_overflow);
 }
