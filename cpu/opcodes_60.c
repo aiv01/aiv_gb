@@ -45,7 +45,7 @@ static int aiv_gb_opcode_65(aiv_gameboy *gb)
 // LD H, (HL)
 static int aiv_gb_opcode_66(aiv_gameboy *gb)
 {
-    gb->hl = gb->h;
+    aiv_gb_memory_write8(gb, gb->hl, gb->h);
     return 8;
 }
 
@@ -110,4 +110,24 @@ static int aiv_gb_opcode_6f(aiv_gameboy *gb)
 {
     gb->l = gb->a;
     return 4;
+}
+
+void aiv_gb_register_opcodes_60(aiv_gameboy *gb)
+{
+    gb->opcodes[0x60] = aiv_gb_opcode_60;
+    gb->opcodes[0x61] = aiv_gb_opcode_61;
+    gb->opcodes[0x62] = aiv_gb_opcode_62;
+    gb->opcodes[0x63] = aiv_gb_opcode_63;
+    gb->opcodes[0x64] = aiv_gb_opcode_64;
+    gb->opcodes[0x65] = aiv_gb_opcode_65;
+    gb->opcodes[0x66] = aiv_gb_opcode_66;
+    gb->opcodes[0x67] = aiv_gb_opcode_67;
+    gb->opcodes[0x68] = aiv_gb_opcode_68;
+    gb->opcodes[0x69] = aiv_gb_opcode_69;
+    gb->opcodes[0x6a] = aiv_gb_opcode_6a;
+    gb->opcodes[0x6b] = aiv_gb_opcode_6b;
+    gb->opcodes[0x6c] = aiv_gb_opcode_6c;
+    gb->opcodes[0x6d] = aiv_gb_opcode_6d;
+    gb->opcodes[0x6e] = aiv_gb_opcode_6e;
+    gb->opcodes[0x6f] = aiv_gb_opcode_6f;
 }

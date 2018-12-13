@@ -75,7 +75,7 @@ static int aiv_gb_opcode_97(aiv_gameboy *gb)
 //SBC A,B
 static int aiv_gb_opcode_98(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->b + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->b + GET_C(gb));
 
     return 4;
 }
@@ -83,7 +83,7 @@ static int aiv_gb_opcode_98(aiv_gameboy *gb)
 //SBC A,C
 static int aiv_gb_opcode_99(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->c + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->c + GET_C(gb));
 
     return 4;
 }
@@ -91,7 +91,7 @@ static int aiv_gb_opcode_99(aiv_gameboy *gb)
 //SBC A,D
 static int aiv_gb_opcode_9a(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->d + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->d + GET_C(gb));
 
     return 4;
 }
@@ -99,7 +99,7 @@ static int aiv_gb_opcode_9a(aiv_gameboy *gb)
 //SBC A,E
 static int aiv_gb_opcode_9b(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->e+ GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->e+ GET_C(gb));
 
     return 4;
 }
@@ -107,7 +107,7 @@ static int aiv_gb_opcode_9b(aiv_gameboy *gb)
 //SBC A,H
 static int aiv_gb_opcode_9c(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->h + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->h + GET_C(gb));
 
     return 4;
 }
@@ -115,7 +115,7 @@ static int aiv_gb_opcode_9c(aiv_gameboy *gb)
 //SBC A,L
 static int aiv_gb_opcode_9d(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->l + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->l + GET_C(gb));
 
     return 4;
 }
@@ -123,7 +123,7 @@ static int aiv_gb_opcode_9d(aiv_gameboy *gb)
 //SBC A,(HL)
 static int aiv_gb_opcode_9e(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, aiv_gb_memory_read8(gb, gb->hl) + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, aiv_gb_memory_read8(gb, gb->hl) + GET_C(gb));
 
     return 8;
 }
@@ -131,7 +131,7 @@ static int aiv_gb_opcode_9e(aiv_gameboy *gb)
 //SBC A,A
 static int aiv_gb_opcode_9f(aiv_gameboy *gb)
 {
-    _aiv_gb_set_flags_internal(gb, gb->a + GET_C((*gb)));
+    _aiv_gb_set_flags_internal(gb, gb->a + GET_C(gb));
 
     return 4;
 }
