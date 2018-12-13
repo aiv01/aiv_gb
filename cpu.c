@@ -19,6 +19,21 @@ int aiv_gb_loop(aiv_gameboy *gb)
     return 0;
 }
 
+void aiv_gb_set_flag(aiv_gameboy *gb, u8_t flag, u8_t value)
+{
+    if (value)
+    {
+        gb->f |= flag;
+        return;
+    }
+    gb->f &= ~flag;
+}
+
+u8_t aiv_gb_get_flag(aiv_gameboy *gb, u8_t flag)
+{
+    return gb->f & flag;
+}
+
 void aiv_gb_init(aiv_gameboy *gb)
 {
     memset(gb, 0, sizeof(aiv_gameboy));
