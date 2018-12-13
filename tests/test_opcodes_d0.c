@@ -152,9 +152,9 @@ TEST(sub_d8)
     ASSERT_THAT(gb.a == 1);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
     ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
 }
 
 TEST(sub_d8_zero)
@@ -171,10 +171,10 @@ TEST(sub_d8_zero)
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 0);
 
-    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 1);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
     ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 1);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
 }
 
 TEST(sub_d8_overflow)
@@ -192,9 +192,43 @@ TEST(sub_d8_overflow)
     ASSERT_THAT(gb.a == 255);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == 1);
-    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == HALF);
     ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 0);
+}
+
+TEST(ret_c)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.sp = 0xff;
+
+    aiv_gb_set_flag(&gb, CARRY, 1);
+
+    aiv_gb_memory_write16(&gb, gb.sp - 1, 0xd000);
+    gb.sp -= 2;
+
+    gb.cartridge[0] = 0xd8;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 0xd000);
+    ASSERT_THAT(gb.ticks == 20);
+}
+
+TEST(ret_c_red_light)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.sp = 0xff;
+
+    aiv_gb_memory_write16(&gb, gb.sp - 1, 0xd000);
+    gb.sp -= 2;
+
+    gb.cartridge[0] = 0xd8;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 1);
+    ASSERT_THAT(gb.ticks == 8);
 }
 
 void aiv_gb_tests_run_opcodes_d0()
@@ -215,4 +249,7 @@ void aiv_gb_tests_run_opcodes_d0()
     RUN_TEST(sub_d8);
     RUN_TEST(sub_d8_zero);
     RUN_TEST(sub_d8_overflow);
+
+    RUN_TEST(ret_c);
+    RUN_TEST(ret_c_red_light);
 }
