@@ -6,17 +6,17 @@ typedef unsigned short u16_t;
 typedef signed short s16_t;
 typedef unsigned long long u64_t;
 
-#define SET_Z(gb) gb->f |= 0x80
-#define UNSET_Z(gb) gb->f &= ~0x80
+#define SET_Z(gb) gb.f |= 0x80
+#define UNSET_Z(gb) gb.f &= ~0x80
 
-#define SET_N(gb) gb->f |= 0x40
-#define UNSET_N(gb) gb->f &= ~0x40
+#define SET_N(gb) gb.f |= 0x40
+#define UNSET_N(gb) gb.f &= ~0x40
 
-#define SET_H(gb) gb->f |= 0x20
-#define UNSET_H(gb) gb->f &= ~0x20
+#define SET_H(gb) gb.f |= 0x20
+#define UNSET_H(gb) gb.f &= ~0x20
 
-#define SET_C(gb) gb->f |= 0x10
-#define UNSET_C(gb) gb->f &= ~0x10
+#define SET_C(gb) gb.f |= 0x10
+#define UNSET_C(gb) gb.f &= ~0x10
 
 #define CARTRIDGE_SIZE 16384
 
