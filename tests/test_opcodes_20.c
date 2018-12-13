@@ -11,7 +11,7 @@ TEST(jr_nz_r8)
     gb.cartridge[1] = 0x02;
 
     aiv_gb_tick(&gb);
-    ASSERT_THAT(gb.pc == 1);
+    ASSERT_THAT(gb.pc == 4);
     ASSERT_THAT(gb.ticks == 12)
 }
 
