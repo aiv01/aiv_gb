@@ -1,9 +1,10 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
-#define INIT_GB       \
-    aiv_gameboy gb;   \
-    aiv_gb_init(&gb); \
-    gb.pc = 0;
+
+#define INIT_GB     \
+    aiv_gameboy gb; \
+    aiv_gb_init(&gb)
+
 TEST(opcode_90)
 {
     INIT_GB;
@@ -13,10 +14,6 @@ TEST(opcode_90)
     gb.a = 12;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -28,10 +25,6 @@ TEST(opcode_91)
     gb.cartridge[0] = 0x91;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -43,10 +36,6 @@ TEST(opcode_92)
     gb.cartridge[0] = 0x92;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -58,10 +47,6 @@ TEST(opcode_93)
     gb.cartridge[0] = 0x93;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -74,10 +59,6 @@ TEST(opcode_94)
     gb.cartridge[0] = 0x94;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -89,10 +70,6 @@ TEST(opcode_95)
     gb.cartridge[0] = 0x95;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -105,10 +82,6 @@ TEST(opcode_96)
     gb.cartridge[0] = 0x96;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 8);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -120,10 +93,6 @@ TEST(opcode_97)
     gb.cartridge[0] = 0x97;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 0);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -136,10 +105,6 @@ TEST(opcode_98)
     gb.cartridge[0] = 0x98;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -151,10 +116,6 @@ TEST(opcode_99)
     gb.cartridge[0] = 0x99;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -166,10 +127,6 @@ TEST(opcode_9a)
     gb.cartridge[0] = 0x9a;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -181,10 +138,6 @@ TEST(opcode_9b)
     gb.cartridge[0] = 0x9b;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -197,10 +150,6 @@ TEST(opcode_9c)
     gb.cartridge[0] = 0x9c;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -212,10 +161,6 @@ TEST(opcode_9d)
     gb.cartridge[0] = 0x9d;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -228,10 +173,6 @@ TEST(opcode_9e)
     gb.cartridge[0] = 0x9e;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 2);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(!GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 8);
     ASSERT_THAT(gb.pc == 1);
 }
@@ -243,10 +184,6 @@ TEST(opcode_9f)
     gb.cartridge[0] = 0x9f;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 0);
-    ASSERT_THAT(!GET_C((&gb)));
-    ASSERT_THAT(GET_N((&gb)));
-    ASSERT_THAT(!GET_H((&gb)));
-    ASSERT_THAT(GET_Z((&gb)));
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
