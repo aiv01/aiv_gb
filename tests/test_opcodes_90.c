@@ -1,11 +1,52 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
-
+extern void _aiv_gb_sub_internal(aiv_gameboy *gb, u8_t to_sub);
 #define INIT_GB       \
     aiv_gameboy gb;   \
     aiv_gb_init(&gb); \
     aiv_gb_set_flag(&gb, CARRY, 1);
 
+TEST(_aiv_gb_sub)
+{
+    INIT_GB;
+    aiv_gb_set_flag(&gb, CARRY, 0);
+    gb.a = 12;
+    _aiv_gb_sub_internal(&gb, 10);
+    ASSERT_THAT(gb.a == 2);
+    ASSERT_THAT(gb.ticks == 0);
+    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.f == (NEG));
+}
+TEST(_aiv_gb_sub_with_carry)
+{
+    INIT_GB;
+    gb.a = 12;
+    _aiv_gb_sub_internal(&gb, 10 + (aiv_gb_get_flag(&gb, CARRY) != 0));
+    ASSERT_THAT(gb.a == 1);
+    ASSERT_THAT(gb.ticks == 0);
+    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.f == (NEG));
+}
+TEST(_aiv_gb_sub_with_zero)
+{
+    INIT_GB;
+    gb.a = 14;
+    _aiv_gb_sub_internal(&gb, 13 + (aiv_gb_get_flag(&gb, CARRY) != 0));
+    ASSERT_THAT(gb.a == 0);
+    ASSERT_THAT(gb.ticks == 0);
+    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.f == (NEG | ZERO));
+}
+TEST(_aiv_gb_sub_with_half)
+{
+    INIT_GB;
+    gb.a = 12;
+    _aiv_gb_sub_internal(&gb, 12 + (aiv_gb_get_flag(&gb, CARRY) != 0));
+    ASSERT_THAT(gb.a == 255);
+    ASSERT_THAT(gb.ticks == 0);
+    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.f == (NEG | CARRY | HALF));
+}
 TEST(opcode_90)
 {
     INIT_GB;
@@ -414,6 +455,10 @@ TEST(opcode_9f_with_carry)
 
 void aiv_gb_tests_run_opcodes_90()
 {
+    RUN_TEST(_aiv_gb_sub);
+    RUN_TEST(_aiv_gb_sub_with_carry);
+    RUN_TEST(_aiv_gb_sub_with_zero);
+    RUN_TEST(_aiv_gb_sub_with_half);
     RUN_TEST(opcode_90);
     RUN_TEST(opcode_91);
     RUN_TEST(opcode_92);
