@@ -23,8 +23,18 @@ static int aiv_gb_opcode_d1(aiv_gameboy *gb)
     return 12;
 }
 
+//PUSH DE
+static int aiv_gb_opcode_d5(aiv_gameboy *gb)
+{
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->de);
+    gb->sp -= 2;
+    
+    return 16;
+}
+
 void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
 {
     gb->opcodes[0xd0] = aiv_gb_opcode_d0;
     gb->opcodes[0xd1] = aiv_gb_opcode_d1;
+    gb->opcodes[0xd5] = aiv_gb_opcode_d5;
 }
