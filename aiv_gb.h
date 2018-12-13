@@ -6,6 +6,7 @@ typedef unsigned short u16_t;
 typedef signed short s16_t;
 typedef unsigned long long u64_t;
 
+
 #define SET_Z(gb) gb->f |= 0x80
 #define SET_Z_BOOL(gb, boolean) gb->f |= (0x80 & boolean << 7)
 #define UNSET_Z(gb) gb->f &= ~0x80
@@ -21,6 +22,7 @@ typedef unsigned long long u64_t;
 #define SET_C(gb) gb->f |= 0x10
 #define UNSET_C(gb) gb->f &= ~0x10
 #define SET_C_BOOL(gb, boolean) gb->f |= (0x10 & boolean << 4)
+
 
 #define CARTRIDGE_SIZE 16384
 
