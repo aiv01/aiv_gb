@@ -3,16 +3,15 @@
 //RET NC
 static int aiv_gb_opcode_d0(aiv_gameboy *gb)
 {
-    if (gb->f && 0x10 == 0x10)
+    if ((gb->f & 0x10) == 0x10)
     {
         return 8;
     }
 
-    int ticks = gb->opcodes[0xd1](gb);
+    gb->pc = aiv_gb_memory_read16(gb, gb->sp + 1);
+    gb->sp += 2;
 
-    gb->pc = gb->de;
-
-    return ticks + 8;
+    return 20;
 }
 
 //POP DE
