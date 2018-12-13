@@ -13,6 +13,8 @@ TEST(ld_h_b)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.b == 2);
     ASSERT_THAT(gb.h == gb.b);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -30,6 +32,8 @@ TEST(ld_h_c)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.c == 2);
     ASSERT_THAT(gb.h == gb.c);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -47,6 +51,8 @@ TEST(ld_h_d)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.d == 2);
     ASSERT_THAT(gb.h == gb.d);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -64,6 +70,8 @@ TEST(ld_h_e)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.e == 2);
     ASSERT_THAT(gb.h == gb.e);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -97,6 +105,8 @@ TEST(ld_h_l)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.l == 2);
     ASSERT_THAT(gb.h == gb.l);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -131,6 +141,8 @@ TEST(ld_h_a)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.h == 2);
+    ASSERT_THAT(gb.a == 2);
     ASSERT_THAT(gb.h == gb.a);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -148,6 +160,8 @@ TEST(ld_l_b)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.b == 2);
     ASSERT_THAT(gb.l == gb.b);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -165,6 +179,8 @@ TEST(ld_l_c)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.c == 2);
     ASSERT_THAT(gb.l == gb.c);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -182,6 +198,8 @@ TEST(ld_l_d)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.d == 2);
     ASSERT_THAT(gb.l == gb.d);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -199,6 +217,8 @@ TEST(ld_l_e)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.e == 2);
     ASSERT_THAT(gb.l == gb.e);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -216,6 +236,8 @@ TEST(ld_l_h)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.h == 2);
     ASSERT_THAT(gb.l == gb.h);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -266,6 +288,8 @@ TEST(ld_l_a)
 
     aiv_gb_tick(&gb);
 
+    ASSERT_THAT(gb.l == 2);
+    ASSERT_THAT(gb.a == 2);
     ASSERT_THAT(gb.l == gb.a);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
