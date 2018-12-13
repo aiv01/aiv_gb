@@ -1,7 +1,8 @@
 #include <aiv_gb.h>
 
 //RET NZ
-int aiv_gb_opcode_c0(aiv_gameboy *gb){
+int aiv_gb_opcode_c0(aiv_gameboy *gb)
+{
     u16_t address = aiv_gb_memory_read16(gb,gb->sp+1);
     gb->sp+=2;
     u8_t i=gb->f;
@@ -13,14 +14,16 @@ int aiv_gb_opcode_c0(aiv_gameboy *gb){
 }
 
 //POP BC
-int aiv_gb_opcode_c1(aiv_gameboy *gb){ 
+int aiv_gb_opcode_c1(aiv_gameboy *gb)
+{ 
     gb->bc = aiv_gb_memory_read16(gb,gb->sp+1);
     gb->sp+=2;   
     return 12;
 }
 
 //JP NZ,a16
-int aiv_gb_opcode_c2(aiv_gameboy *gb){  
+int aiv_gb_opcode_c2(aiv_gameboy *gb)
+{  
     u8_t i=gb->f;
     if((i&=0x80)==0x00){
         u16_t address = aiv_gb_memory_read16(gb,gb->pc);       
@@ -31,14 +34,16 @@ int aiv_gb_opcode_c2(aiv_gameboy *gb){
 }
 
 //JP a16
-int aiv_gb_opcode_c3(aiv_gameboy *gb){        
+int aiv_gb_opcode_c3(aiv_gameboy *gb)
+{        
     u16_t jump_address = aiv_gb_memory_read16(gb,gb->pc);    
     gb->pc=jump_address;
     return 16;    
 }
 
 //CALL NZ,a16
-int aiv_gb_opcode_c4(aiv_gameboy *gb){        
+int aiv_gb_opcode_c4(aiv_gameboy *gb)
+{        
     u8_t i=gb->f;
     if((i&=0x80)==0x00){
         u16_t func_address = aiv_gb_memory_read16(gb,gb->pc);
@@ -54,7 +59,8 @@ int aiv_gb_opcode_c4(aiv_gameboy *gb){
 }
 
 //PUSH BC
-int aiv_gb_opcode_c5(aiv_gameboy *gb){
+int aiv_gb_opcode_c5(aiv_gameboy *gb)
+{
     u16_t value=gb->bc;
     gb->sp-=1;
     aiv_gb_memory_write16(gb,gb->sp,value);
@@ -63,7 +69,9 @@ int aiv_gb_opcode_c5(aiv_gameboy *gb){
 }
 
 //ADD a,d8
-int aiv_gb_opcode_c6(aiv_gameboy *gb){  
+int aiv_gb_opcode_c6(aiv_gameboy *gb)
+{  
+    gb->f&=0x00;
     int a=gb->a;
     int b= aiv_gb_memory_read8(gb,gb->pc);
     if(a+b>0xFF){
@@ -78,7 +86,8 @@ int aiv_gb_opcode_c6(aiv_gameboy *gb){
 }
 
 //RST 00H
-int aiv_gb_opcode_c7(aiv_gameboy *gb){
+int aiv_gb_opcode_c7(aiv_gameboy *gb)
+{
     u16_t ret_address=gb->pc;
     gb->sp-=1;
     aiv_gb_memory_write16(gb,gb->sp,ret_address); 
@@ -88,7 +97,8 @@ int aiv_gb_opcode_c7(aiv_gameboy *gb){
 }
 
 //RET Z
-int aiv_gb_opcode_c8(aiv_gameboy *gb){
+int aiv_gb_opcode_c8(aiv_gameboy *gb)
+{
     u16_t address = aiv_gb_memory_read16(gb,gb->sp+1);
     gb->sp+=2;
     u8_t i=gb->f;
@@ -100,7 +110,8 @@ int aiv_gb_opcode_c8(aiv_gameboy *gb){
 }
 
 //RET
-int aiv_gb_opcode_c9(aiv_gameboy *gb){
+int aiv_gb_opcode_c9(aiv_gameboy *gb)
+{
     u16_t address = aiv_gb_memory_read16(gb,gb->sp+1);
     gb->sp+=2;    
     gb->pc=address;
@@ -108,7 +119,8 @@ int aiv_gb_opcode_c9(aiv_gameboy *gb){
 }
 
 //JP Z,a16
-int aiv_gb_opcode_ca(aiv_gameboy *gb){     
+int aiv_gb_opcode_ca(aiv_gameboy *gb)
+{     
     u8_t i=gb->f;    
     if((i&=0x80)==0x80){
     u16_t jump_address = aiv_gb_memory_read16(gb,gb->pc);      
@@ -119,13 +131,15 @@ int aiv_gb_opcode_ca(aiv_gameboy *gb){
 }
 
 //PREFIX cb
-int aiv_gb_opcode_cb(aiv_gameboy *gb){            
+int aiv_gb_opcode_cb(aiv_gameboy *gb)
+{            
     int ticks=gb->prefix_opcodes[aiv_gb_memory_read8(gb,gb->pc)](gb);
     return ticks;
 }
 
 //CALL Z,a16
-int aiv_gb_opcode_cc(aiv_gameboy *gb){        
+int aiv_gb_opcode_cc(aiv_gameboy *gb)
+{        
     u8_t i=gb->f;
     if((i&=0x80)==0x80){
     u16_t func_address = aiv_gb_memory_read16(gb,gb->pc);
@@ -140,7 +154,8 @@ int aiv_gb_opcode_cc(aiv_gameboy *gb){
 }
 
 //CALL a16
-int aiv_gb_opcode_cd(aiv_gameboy *gb){        
+int aiv_gb_opcode_cd(aiv_gameboy *gb)
+{        
     u16_t func_address = aiv_gb_memory_read16(gb,gb->pc);
     gb->pc+=2;
     gb->sp-=1;
@@ -151,7 +166,9 @@ int aiv_gb_opcode_cd(aiv_gameboy *gb){
 }
 
 //ADC A,d8
-int aiv_gb_opcode_ce(aiv_gameboy *gb){    
+int aiv_gb_opcode_ce(aiv_gameboy *gb)
+{  
+   gb->f&=0x00;  
    int a=gb->a;
     int b= aiv_gb_memory_read8(gb,gb->pc);
     if(a+b>0xFF){
@@ -166,7 +183,8 @@ int aiv_gb_opcode_ce(aiv_gameboy *gb){
 }
 
 //RST 08H
-int aiv_gb_opcode_cf(aiv_gameboy *gb){
+int aiv_gb_opcode_cf(aiv_gameboy *gb)
+{
     u16_t ret_address=gb->pc;
     gb->sp-=1;
     aiv_gb_memory_write16(gb,gb->sp,ret_address); 

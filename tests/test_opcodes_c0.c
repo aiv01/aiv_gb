@@ -1,7 +1,8 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
 
-TEST(aiv_gb_opcode_c0){
+TEST(aiv_gb_opcode_c0)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);
     gb.sp=0xFF;
@@ -14,7 +15,8 @@ TEST(aiv_gb_opcode_c0){
     ASSERT_THAT(gb.pc==8080);
 }
 
-TEST(aiv_gb_opcode_c1){
+TEST(aiv_gb_opcode_c1)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);
     gb.sp=0xFF;
@@ -26,7 +28,8 @@ TEST(aiv_gb_opcode_c1){
     ASSERT_THAT(gb.bc==8080);
 }
 
-TEST(aiv_gb_opcode_c1_stack_position){
+TEST(aiv_gb_opcode_c1_stack_position)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);
     gb.sp=0xFF;
@@ -38,7 +41,8 @@ TEST(aiv_gb_opcode_c1_stack_position){
     ASSERT_THAT(gb.sp==0xFF);
 }
 
-TEST(aiv_gb_opcode_c2){
+TEST(aiv_gb_opcode_c2)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);    
     gb.f=00;
@@ -49,7 +53,8 @@ TEST(aiv_gb_opcode_c2){
     ASSERT_THAT(gb.pc==0x8080);
 }
 
-TEST(aiv_gb_opcode_c2_z_flag_set){
+TEST(aiv_gb_opcode_c2_z_flag_set)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);    
     gb.f=0xFF;
@@ -61,7 +66,8 @@ TEST(aiv_gb_opcode_c2_z_flag_set){
     ASSERT_THAT(gb.ticks-ticks==12);
 }
 
-TEST(aiv_gb_opcode_c3){
+TEST(aiv_gb_opcode_c3)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);   
     gb.cartridge[gb.pc]=0xc3;
@@ -71,7 +77,8 @@ TEST(aiv_gb_opcode_c3){
     ASSERT_THAT(gb.pc==0x8080);
 }
 
-TEST(aiv_gb_opcode_c4){
+TEST(aiv_gb_opcode_c4)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;   
@@ -82,7 +89,8 @@ TEST(aiv_gb_opcode_c4){
     aiv_gb_tick(&gb); 
     ASSERT_THAT(gb.pc==0x8080);
 }
-TEST(aiv_gb_opcode_c4_z_flag_set){
+TEST(aiv_gb_opcode_c4_z_flag_set)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -95,7 +103,8 @@ TEST(aiv_gb_opcode_c4_z_flag_set){
     ASSERT_THAT(gb.ticks-ticks==12);
 }
 
-TEST(aiv_gb_opcode_c5){
+TEST(aiv_gb_opcode_c5)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -108,7 +117,8 @@ TEST(aiv_gb_opcode_c5){
     ASSERT_THAT(stack_value==0x8080);
 }
 
-TEST(aiv_gb_opcode_c6){
+TEST(aiv_gb_opcode_c6)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.a=0x01;      
@@ -119,7 +129,8 @@ TEST(aiv_gb_opcode_c6){
     ASSERT_THAT(gb.a==0x02);
 }
 
-TEST(aiv_gb_opcode_c6_carry_flag){
+TEST(aiv_gb_opcode_c6_carry_flag)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.a=0xFF;      
@@ -131,7 +142,8 @@ TEST(aiv_gb_opcode_c6_carry_flag){
     ASSERT_THAT(gb.f==0x10);
 }
 
-TEST(aiv_gb_opcode_c7_check_stack){
+TEST(aiv_gb_opcode_c7_check_stack)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -144,7 +156,8 @@ TEST(aiv_gb_opcode_c7_check_stack){
     ASSERT_THAT(stack_value==0x0101);
 }
 
-TEST(aiv_gb_opcode_c7){
+TEST(aiv_gb_opcode_c7)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -156,7 +169,8 @@ TEST(aiv_gb_opcode_c7){
     ASSERT_THAT(gb.pc==0);
 }
 
-TEST(aiv_gb_opcode_c8){
+TEST(aiv_gb_opcode_c8)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -170,7 +184,8 @@ TEST(aiv_gb_opcode_c8){
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.pc==0x8080);
 }
-TEST(aiv_gb_opcode_c8_check_unset_flag){
+TEST(aiv_gb_opcode_c8_check_unset_flag)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -186,7 +201,8 @@ TEST(aiv_gb_opcode_c8_check_unset_flag){
     ASSERT_THAT(gb.ticks-ticks==0x08);
 }
 
-TEST(aiv_gb_opcode_c9){
+TEST(aiv_gb_opcode_c9)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;     
@@ -200,7 +216,8 @@ TEST(aiv_gb_opcode_c9){
     ASSERT_THAT(gb.pc==0x8080);
 }
 
-TEST(aiv_gb_opcode_ca){
+TEST(aiv_gb_opcode_ca)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);    
     gb.f=0xFF;
@@ -211,7 +228,8 @@ TEST(aiv_gb_opcode_ca){
     ASSERT_THAT(gb.pc==0x8080);
 }
 
-TEST(aiv_gb_opcode_ca_z_flag_set){
+TEST(aiv_gb_opcode_ca_z_flag_set)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb);    
     gb.f=0x00;
@@ -223,7 +241,8 @@ TEST(aiv_gb_opcode_ca_z_flag_set){
     ASSERT_THAT(gb.ticks-ticks==12);
 }
 
-TEST(aiv_gb_opcode_cc){
+TEST(aiv_gb_opcode_cc)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;   
@@ -234,7 +253,8 @@ TEST(aiv_gb_opcode_cc){
     aiv_gb_tick(&gb); 
     ASSERT_THAT(gb.pc==0x8080);
 }
-TEST(aiv_gb_opcode_cc_z_flag_set){
+TEST(aiv_gb_opcode_cc_z_flag_set)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -247,7 +267,8 @@ TEST(aiv_gb_opcode_cc_z_flag_set){
     ASSERT_THAT(gb.ticks-ticks==12);
 }
 
-TEST(aiv_gb_opcode_cc_z_stack){
+TEST(aiv_gb_opcode_cc_z_stack)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -261,7 +282,8 @@ TEST(aiv_gb_opcode_cc_z_stack){
     ASSERT_THAT(stack_value==0x0103);
 }
 
-TEST(aiv_gb_opcode_cd){
+TEST(aiv_gb_opcode_cd)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;   
@@ -272,7 +294,8 @@ TEST(aiv_gb_opcode_cd){
     ASSERT_THAT(gb.pc==0x8080);
 }
 
-TEST(aiv_gb_opcode_cd_z_stack){
+TEST(aiv_gb_opcode_cd_z_stack)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -285,7 +308,8 @@ TEST(aiv_gb_opcode_cd_z_stack){
     ASSERT_THAT(stack_value==0x0103);
 }
 
-TEST(aiv_gb_opcode_ce){
+TEST(aiv_gb_opcode_ce)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.a=0x01;      
@@ -295,7 +319,8 @@ TEST(aiv_gb_opcode_ce){
     aiv_gb_tick(&gb);    
     ASSERT_THAT(gb.a==0x02);
 }
-TEST(aiv_gb_opcode_ce_carry_flag){
+TEST(aiv_gb_opcode_ce_carry_flag)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.a=0xFF;      
@@ -307,7 +332,8 @@ TEST(aiv_gb_opcode_ce_carry_flag){
     ASSERT_THAT(gb.f==0x10);
 }
 
-TEST(aiv_gb_opcode_cf_check_stack){
+TEST(aiv_gb_opcode_cf_check_stack)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -320,7 +346,8 @@ TEST(aiv_gb_opcode_cf_check_stack){
     ASSERT_THAT(stack_value==0x0101);
 }
 
-TEST(aiv_gb_opcode_cf){
+TEST(aiv_gb_opcode_cf)
+{
     aiv_gameboy gb;
     aiv_gb_init(&gb); 
     gb.sp=0xFF;
@@ -332,8 +359,8 @@ TEST(aiv_gb_opcode_cf){
     ASSERT_THAT(gb.pc==0x08);
 }
 
-void aiv_gb_tests_run_opcodes_c0(){
-
+void aiv_gb_tests_run_opcodes_c0()
+{
     RUN_TEST(aiv_gb_opcode_c0);
     RUN_TEST(aiv_gb_opcode_c1);
     RUN_TEST(aiv_gb_opcode_c1_stack_position);
