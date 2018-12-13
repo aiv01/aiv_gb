@@ -7,270 +7,129 @@ static int check_set_h(aiv_gameboy *gb)
 
     if (value > 0x08)
         return 1;
-
     return 0;
+}
+
+static int add(aiv_gameboy *gb, u8_t adder)
+{
+    if (check_set_h(gb) == 1)
+        SET_H((*gb));
+
+    gb->a += adder;
+
+    if (gb->a == 0)
+        SET_Z((*gb));
+
+    UNSET_N((*gb));
+}
+static int adc(aiv_gameboy *gb, u8_t adder)
+{
+    if (check_set_h(gb) == 1)
+        SET_H((*gb));
+
+    if (gb->f == 0x10)
+        gb->a += 1;
+
+    gb->a += adder;
+
+    if (gb->a == 0)
+        SET_Z((*gb));
+
+    UNSET_N((*gb));
 }
 
 static int aiv_gb_opcode_80(aiv_gameboy *gb)
 {
-    gb->a += gb->b;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->b);
     return 4;
 }
 
 static int aiv_gb_opcode_81(aiv_gameboy *gb)
 {
-    gb->a += gb->c;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->c);
     return 4;
 }
 
 static int aiv_gb_opcode_82(aiv_gameboy *gb)
 {
-    gb->a += gb->d;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->d);
     return 4;
 }
 
 static int aiv_gb_opcode_83(aiv_gameboy *gb)
 {
-    gb->a += gb->e;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->e);
     return 4;
 }
 
 static int aiv_gb_opcode_84(aiv_gameboy *gb)
 {
-    gb->a += gb->h;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->h);
     return 4;
 }
 
 static int aiv_gb_opcode_85(aiv_gameboy *gb)
 {
-    gb->a += gb->l;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->l);
     return 4;
 }
 
 static int aiv_gb_opcode_86(aiv_gameboy *gb)
 {
-    gb->a += gb->hl;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->hl);
     return 8;
 }
 
 static int aiv_gb_opcode_87(aiv_gameboy *gb)
 {
-    gb->a += gb->a;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    add(gb, gb->a);
     return 4;
 }
 static int aiv_gb_opcode_88(aiv_gameboy *gb)
 {
-    gb->a += gb->b;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->b);
     return 4;
 }
 
 static int aiv_gb_opcode_89(aiv_gameboy *gb)
 {
-    gb->a += gb->c;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->c);
     return 4;
 }
 
 static int aiv_gb_opcode_8a(aiv_gameboy *gb)
 {
-    gb->a += gb->d;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->d);
     return 4;
 }
 
 static int aiv_gb_opcode_8b(aiv_gameboy *gb)
 {
-    gb->a += gb->e;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->e);
     return 4;
 }
 
 static int aiv_gb_opcode_8c(aiv_gameboy *gb)
 {
-    gb->a += gb->h;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->h);
     return 4;
 }
 
 static int aiv_gb_opcode_8d(aiv_gameboy *gb)
 {
-    gb->a += gb->l;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->l);
     return 4;
 }
 
 static int aiv_gb_opcode_8e(aiv_gameboy *gb)
 {
-    gb->a += gb->hl;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->hl);
     return 8;
 }
 
 static int aiv_gb_opcode_8f(aiv_gameboy *gb)
 {
-    gb->a += gb->a;
-
-    if (gb->f == 0x10)
-        gb->a += 1;
-
-    if (gb->a == 0)
-        SET_Z(gb);
-
-    if (check_set_h(gb) == 1)
-        SET_H(gb);
-
-    UNSET_N(gb);
-
+    adc(gb, gb->a);
     return 4;
 }
 

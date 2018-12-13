@@ -1,9 +1,5 @@
 CC=clang
-<<<<<<< HEAD
-CFLAGS=-O2 -Wall -Werror -I .
-=======
 CFLAGS=-O2 -Wall -I.
->>>>>>> 73ee2f9ecb621b651244c528dbc0e595bc5b92fa
 OPCODES=$(patsubst %.c,%.o,$(wildcard cpu/*.c))
 TESTS=$(patsubst %.c,%.o,$(wildcard tests/*.c))
 BINARY=aiv_gb
