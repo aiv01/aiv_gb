@@ -113,7 +113,7 @@ static int aiv_gb_opcode_86(aiv_gameboy *gb)
 
     UNSET_N(gb);
 
-    return 4;
+    return 8;
 }
 
 static int aiv_gb_opcode_87(aiv_gameboy *gb)
@@ -253,7 +253,7 @@ static int aiv_gb_opcode_8e(aiv_gameboy *gb)
 
     UNSET_N(gb);
 
-    return 4;
+    return 8;
 }
 
 static int aiv_gb_opcode_8f(aiv_gameboy *gb)
