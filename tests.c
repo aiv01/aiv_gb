@@ -27,7 +27,11 @@ void aiv_gb_tests_run_opcodes_f0();
 int main(int argc, char **argv)
 {
     aiv_gb_tests_run_opcodes_00();
+<<<<<<< HEAD
     aiv_gb_tests_run_opcodes_20();
+=======
+    aiv_gb_tests_run_opcodes_90();
+>>>>>>> efcc97ee0195f9ac853216f152c492de7be0b546
 
     PRINT_TEST_RESULTS();
     return 0;
