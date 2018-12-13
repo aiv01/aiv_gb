@@ -51,6 +51,7 @@ TEST(is_setted_carry)
     ASSERT_THAT(!GET_C(&gb));
     SET_C(gb);
     ASSERT_THAT(IS_C_SETTED(&gb) == 1);
+    ASSERT_THAT(GET_C(&gb) == 0x10);
     UNSET_C(gb);
     ASSERT_THAT(!GET_C(&gb));
 }
@@ -60,6 +61,7 @@ TEST(is_setted_half)
     ASSERT_THAT(!GET_H(&gb));
     SET_H(gb);
     ASSERT_THAT(IS_H_SETTED(&gb) == 1);
+    ASSERT_THAT(GET_H(&gb) == 0x20);
     UNSET_H(gb);
     ASSERT_THAT(!GET_H(&gb));
 }
@@ -69,6 +71,7 @@ TEST(is_setted_zero)
     ASSERT_THAT(!GET_Z(&gb));
     SET_Z(gb);
     ASSERT_THAT(IS_Z_SETTED(&gb) == 1);
+    ASSERT_THAT(GET_Z(&gb) == 0x80);
     UNSET_Z(gb);
     ASSERT_THAT(!GET_Z(&gb));
 }
@@ -78,6 +81,7 @@ TEST(is_setted_neg)
     ASSERT_THAT(!GET_N(&gb));
     SET_N(gb);
     ASSERT_THAT(IS_N_SETTED(&gb) == 1);
+    ASSERT_THAT(GET_N(&gb) == 0x40);
     UNSET_N(gb);
     ASSERT_THAT(!GET_N(&gb));
 }
@@ -177,10 +181,10 @@ TEST(_aiv_gb_set_flags_internal_carry)
     gb.a = 12;
     _aiv_gb_set_flags_internal(&gb, 14);
     ASSERT_THAT(gb.a == 254);
-    ASSERT_THAT(IS_C_SETTED((&gb)));
     ASSERT_THAT(GET_N((&gb)));
     ASSERT_THAT(GET_H((&gb)));
     ASSERT_THAT(!GET_Z((&gb)));
+    ASSERT_THAT(IS_C_SETTED((&gb)));
     ASSERT_THAT(gb.ticks == 0);
     ASSERT_THAT(gb.pc == 0);
 }
