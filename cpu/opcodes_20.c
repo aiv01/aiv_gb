@@ -3,8 +3,10 @@
 // JR NZ, r8
 static int aiv_gb_opcode_20(aiv_gameboy *gb)
 {
-    gb->bc = aiv_gb_memory_read16(gb, gb->pc);
-    gb->pc += 2;
+    if(GET_Z(gb) == 0)
+        return 8;
+
+    gb->pc += aiv_gb_memory_read8(gb, gb->pc);
     return 12;
 }
 
