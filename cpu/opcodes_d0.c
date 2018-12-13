@@ -24,7 +24,7 @@ static int aiv_gb_opcode_d1(aiv_gameboy *gb)
     return 12;
 }
 
-void aiv_gb_register_opcodes_00(aiv_gameboy *gb)
+void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
 {
     gb->opcodes[0xd0] = aiv_gb_opcode_d0;
     gb->opcodes[0xd1] = aiv_gb_opcode_d1;
