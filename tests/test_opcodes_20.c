@@ -5,7 +5,8 @@ TEST(jr_nz_r8)
 {
     aiv_gameboy gb;
     aiv_gb_init(&gb);
-    SET_Z(gb);
+
+    aiv_gb_set_flag(&gb, ZERO, 1);
 
     gb.cartridge[0] = 0x20;
     gb.cartridge[1] = 0x02;
@@ -19,7 +20,8 @@ TEST(not_jr_nz_r8)
 {
     aiv_gameboy gb;
     aiv_gb_init(&gb);
-    UNSET_Z(gb);
+
+    aiv_gb_set_flag(&gb, ZERO, 0);
 
     gb.cartridge[0] = 0x20;
     gb.cartridge[1] = 0x02;
@@ -68,6 +70,5 @@ void aiv_gb_tests_run_opcodes_20()
     RUN_TEST(not_jr_nz_r8);
     RUN_TEST(ld_hl_d16);
     RUN_TEST(ld_hl_inc_a);
-
 
 }
