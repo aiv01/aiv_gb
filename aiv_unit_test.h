@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-static int tests_succeded = 0;
-static int tests_failed = 0;
-static int tests_executed = 0;
+extern int tests_succeded;
+extern int tests_failed;
+extern int tests_executed;
 
 #define TEST(f)                                                                                 \
     static void test_##f(const char *, int *);                                                  \
