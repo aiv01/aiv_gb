@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 
 typedef unsigned char u8_t;
 typedef signed char s8_t;
