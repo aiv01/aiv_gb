@@ -3,161 +3,137 @@
 //A | B
 static int aiv_gb_opcode_b0(aiv_gameboy *gb)
 {
-    gb->a | gb->b;
+    gb->a |= gb->b;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | C
 static int aiv_gb_opcode_b1(aiv_gameboy *gb)
 {
-    gb->a | gb->c;
+    gb->a |= gb->c;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | D
 static int aiv_gb_opcode_b2(aiv_gameboy *gb)
 {
-    gb->a | gb->d;
+    gb->a |= gb->d;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | E
 static int aiv_gb_opcode_b3(aiv_gameboy *gb)
 {
-    gb->a | gb->e;
+    gb->a |= gb->e;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | H
 static int aiv_gb_opcode_b4(aiv_gameboy *gb)
 {
-    gb->a | gb->h;
+    gb->a |= gb->h;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | L
 static int aiv_gb_opcode_b5(aiv_gameboy *gb)
 {
-    gb->a | gb->l;
+    gb->a |= gb->l;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 //A | (HL)
 static int aiv_gb_opcode_b6(aiv_gameboy *gb)
 {
-    gb->a | gb->hl;
+    gb->a |= gb->hl;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 8;
 }
 //A | A
 static int aiv_gb_opcode_b7(aiv_gameboy *gb)
 {
-    gb->a | gb->a;
+    gb->a |= gb->a;
     if (gb->a == 0)
     {
         SET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
     else
     {
         UNSET_Z(gb);
-        UNSET_N(gb);
-        UNSET_H(gb);
-        UNSET_C(gb);
     }
+    UNSET_N(gb);
+    UNSET_H(gb);
+    UNSET_C(gb);
     return 4;
 }
 
