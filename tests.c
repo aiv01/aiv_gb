@@ -1,4 +1,5 @@
 #include <aiv_unit_test.h>
+#include <aiv_gb.h>
 
 int tests_succeded = 0;
 int tests_failed = 0;
@@ -29,9 +30,12 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_00();
     aiv_gb_tests_run_opcodes_80();
    
+    aiv_gb_tests_run_opcodes_b0();
     aiv_gb_tests_run_opcodes_60();
     aiv_gb_tests_run_opcodes_20();
     aiv_gb_tests_run_opcodes_90();
+    aiv_gb_tests_run_opcodes_70();
+    aiv_gb_tests_run_opcodes_d0();
 
     PRINT_TEST_RESULTS();
     return 0;

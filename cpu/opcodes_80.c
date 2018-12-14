@@ -18,10 +18,10 @@ static void add(aiv_gameboy *gb, u8_t adder)
     u16_t sum = gb->a + adder;
    
     if (sum > 0xff)
-        SET_C((*gb));
+        gb->f |= CARRY;
 
     if (gb->a == 0)
-        SET_Z((*gb));
+        gb->f = ZERO;
 
     UNSET_N((*gb));
 
@@ -37,12 +37,17 @@ static void adc(aiv_gameboy *gb, u8_t adder)
     if (gb->f == 0x10)
         gb->a += 1;
 
-    gb->a += adder;
+    u16_t sum = gb->a + adder;
+   
+    if (sum > 0xff)
+        SET_C((*gb));
 
     if (gb->a == 0)
         SET_Z((*gb));
 
     UNSET_N((*gb));
+
+    gb->a = sum & 0xFF;
 }
 
 

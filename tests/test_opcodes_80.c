@@ -213,8 +213,8 @@ TEST(check_carry_flag)
     aiv_gb_init(&gb);
     gb.cartridge[0] = 0x80;
     
-    gb.a = 2500;
-    gb.b = 1000;
+    gb.a = 250;
+    gb.b = 100;
     aiv_gb_memory_write8(&gb, gb.a, 250);
     aiv_gb_memory_write8(&gb, gb.b, 10);
 
