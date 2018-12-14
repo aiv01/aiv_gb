@@ -1,11 +1,32 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
 
+#define GB_INIT       \
+    aiv_gameboy gb;   \
+    aiv_gb_init(&gb); 
+
+#define ADD_A_B 0x80
+#define ADD_A_C 0x81
+#define ADD_A_D 0x82
+#define ADD_A_E 0x83
+#define ADD_A_H 0x84
+#define ADD_A_L 0x85
+#define ADD_A_HL 0x86
+#define ADD_A_A 0x87
+
+#define ADC_A_B 0x88
+#define ADC_A_C 0x89
+#define ADC_A_D 0x8a
+#define ADC_A_E 0x8b
+#define ADC_A_H 0x8c
+#define ADC_A_L 0x8d
+#define ADC_A_HL 0x8e
+#define ADC_A_A 0x8f
+
 TEST(check_add_ticks)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x80;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
@@ -13,9 +34,8 @@ TEST(check_add_ticks)
 
 TEST(check_add_a_b)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x80;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
 
     gb.a = 2;
     gb.b = 3;
@@ -25,9 +45,8 @@ TEST(check_add_a_b)
 
 TEST(check_add_a_c)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x81;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_C;
 
     gb.a = 2;
     gb.c = 3;
@@ -37,9 +56,8 @@ TEST(check_add_a_c)
 
 TEST(check_add_a_d)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x82;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_D;
 
     gb.a = 2;
     gb.d = 3;
@@ -49,9 +67,8 @@ TEST(check_add_a_d)
 
 TEST(check_add_a_e)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x83;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_E;
 
     gb.a = 2;
     gb.e = 4;
@@ -61,9 +78,8 @@ TEST(check_add_a_e)
 
 TEST(check_add_a_h)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x84;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_H;
 
     gb.a = 2;
     gb.h = 3;
@@ -73,9 +89,8 @@ TEST(check_add_a_h)
 
 TEST(check_add_a_l)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x85;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_L;
 
     gb.a = 2;
     gb.l = 3;
@@ -85,9 +100,8 @@ TEST(check_add_a_l)
 
 TEST(check_add_a_a)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x87;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_A;
 
     gb.a = 2;
     aiv_gb_tick(&gb);
@@ -96,9 +110,8 @@ TEST(check_add_a_a)
 
 TEST(check_add_a_hl)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x86;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_HL;
 
     gb.a = 2;
     gb.hl = 300;
@@ -111,9 +124,8 @@ TEST(check_add_a_hl)
 
 TEST(check_adc_a_b)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x88;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_B;
 
     gb.a = 2;
     gb.b = 3;
@@ -123,9 +135,8 @@ TEST(check_adc_a_b)
 
 TEST(check_adc_a_c)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x89;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_C;
 
     gb.a = 2;
     gb.c = 3;
@@ -135,9 +146,8 @@ TEST(check_adc_a_c)
 
 TEST(check_adc_a_d)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8a;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_D;
 
     gb.a = 2;
     gb.d = 3;
@@ -147,9 +157,8 @@ TEST(check_adc_a_d)
 
 TEST(check_adc_a_e)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8b;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_E;
 
     gb.a = 2;
     gb.e = 4;
@@ -159,9 +168,8 @@ TEST(check_adc_a_e)
 
 TEST(check_adc_a_h)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8c;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_H;
 
     gb.a = 2;
     gb.h = 3;
@@ -171,9 +179,8 @@ TEST(check_adc_a_h)
 
 TEST(check_adc_a_l)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8d;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_L;
 
     gb.a = 2;
     gb.l = 3;
@@ -183,9 +190,8 @@ TEST(check_adc_a_l)
 
 TEST(check_adc_a_a)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8f;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_A;
 
     gb.a = 2;
     aiv_gb_tick(&gb);
@@ -194,9 +200,8 @@ TEST(check_adc_a_a)
 
 TEST(check_adc_a_hl)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x8e;
+    GB_INIT
+    gb.cartridge[0] = ADC_A_HL;
 
     gb.a = 2;
     //address
@@ -209,44 +214,37 @@ TEST(check_adc_a_hl)
 
 TEST(check_carry_flag)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x80;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
     
     gb.a = 250;
     gb.b = 100;
-    aiv_gb_memory_write8(&gb, gb.a, 250);
-    aiv_gb_memory_write8(&gb, gb.b, 10);
 
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a < 255); 
-    u8_t value = aiv_gb_memory_read8(&gb, gb.f);
-    ASSERT_THAT(value == 0x10);
+    ASSERT_THAT(gb.f == CARRY);
 }
 
 TEST(check_n_flag)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x80;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
 
     gb.a = 2;
-    gb.b = 3;
+    gb.b = 4;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.f == 0x00);
 }
 
 TEST(check_zero_flag)
 {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    gb.cartridge[0] = 0x80;
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
    
-    gb.a = 10;
-    gb.b = -10;
+    gb.a = 0;
+    gb.b = 0;
     aiv_gb_tick(&gb);
-    u8_t value = aiv_gb_memory_read8(&gb, gb.f);
-    ASSERT_THAT(value == 0x00);
+    ASSERT_THAT(gb.f == ZERO);
 }
 
 
