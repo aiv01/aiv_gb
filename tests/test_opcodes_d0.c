@@ -150,6 +150,7 @@ TEST(sub_d8)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 1);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -170,6 +171,7 @@ TEST(sub_d8_zero)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 0);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -190,6 +192,7 @@ TEST(sub_d8_overflow)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 255);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -311,6 +314,7 @@ TEST(sbc_a_d8)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 1);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -332,6 +336,7 @@ TEST(sbc_a_d8_carry)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 1);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -352,6 +357,7 @@ TEST(sbc_a_d8_zero)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 0);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -373,6 +379,7 @@ TEST(sbc_a_d8_zero_carry)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 0);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -393,6 +400,7 @@ TEST(sbc_a_d8_overflow)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 255);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -414,6 +422,7 @@ TEST(sbc_a_d8_overflow_carry)
 
     ASSERT_THAT(gb.pc == 2);
     ASSERT_THAT(gb.a == 255);
+    ASSERT_THAT(gb.ticks == 8);
 
     ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
     ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
@@ -435,6 +444,22 @@ TEST(rst_10h)
     ASSERT_THAT(stored_opcode == 1);
     ASSERT_THAT(gb.ticks == 16);
     ASSERT_THAT(gb.pc == 0x0010);
+}
+
+TEST(rst_18h)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.sp = 0xff;
+
+    gb.cartridge[0] = 0xdf;
+    aiv_gb_tick(&gb);
+
+    u16_t stored_opcode = aiv_gb_memory_read16(&gb, gb.sp + 1);
+
+    ASSERT_THAT(stored_opcode == 1);
+    ASSERT_THAT(gb.ticks == 16);
+    ASSERT_THAT(gb.pc == 0x0018);
 }
 
 /*
@@ -494,4 +519,6 @@ void aiv_gb_tests_run_opcodes_d0()
     RUN_TEST(sbc_a_d8_zero_carry);
     RUN_TEST(sbc_a_d8_overflow);
     RUN_TEST(sbc_a_d8_overflow_carry);
+
+    RUN_TEST(rst_18h);
 }

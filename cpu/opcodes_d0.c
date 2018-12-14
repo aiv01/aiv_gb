@@ -171,6 +171,15 @@ static int aiv_gb_opcode_de(aiv_gameboy *gb)
 }
 
 //RST 18H
+static int aiv_gb_opcode_df(aiv_gameboy *gb)
+{
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->pc);
+    gb->sp -= 2;
+
+    gb->pc = 0x0018;
+
+    return 16;
+}
 
 void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
 {
@@ -186,4 +195,5 @@ void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
     gb->opcodes[0xda] = aiv_gb_opcode_da;
     gb->opcodes[0xdc] = aiv_gb_opcode_dc;
     gb->opcodes[0xde] = aiv_gb_opcode_de;
+    gb->opcodes[0xdf] = aiv_gb_opcode_df;
 }
