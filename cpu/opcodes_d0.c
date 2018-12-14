@@ -133,6 +133,22 @@ static int aiv_gb_opcode_dc(aiv_gameboy *gb)
 }
 
 //SBC A,d8
+static int aiv_gb_opcode_de(aiv_gameboy *gb)
+{
+    u8_t n1 = gb->a;
+    u8_t n2 = aiv_gb_memory_read8(gb, gb->pc);
+    n2 += +aiv_gb_get_flag(gb, CARRY);
+    gb->pc++;
+
+    gb->a = n1 - n2;
+
+    aiv_gb_set_flag(gb, ZERO, gb->a == 0);
+    aiv_gb_set_flag(gb, NEG, 1);
+    aiv_gb_set_flag(gb, HALF, (((n1 & 0x0f) - n2) & 0xf0));
+    aiv_gb_set_flag(gb, CARRY, n1 >= n2);
+
+    return 8;
+}
 
 //RST 18H
 
@@ -147,4 +163,5 @@ void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
     gb->opcodes[0xd8] = aiv_gb_opcode_d8;
     gb->opcodes[0xda] = aiv_gb_opcode_da;
     gb->opcodes[0xdc] = aiv_gb_opcode_dc;
+    gb->opcodes[0xde] = aiv_gb_opcode_de;
 }

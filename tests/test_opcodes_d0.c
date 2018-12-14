@@ -298,6 +298,129 @@ TEST(call_c_a16_red_light)
     ASSERT_THAT(gb.ticks == 12);
 }
 
+TEST(sbc_a_d8)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 5;
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 1);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
+}
+
+TEST(sbc_a_d8_carry)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    aiv_gb_set_flag(&gb, CARRY, 1);
+
+    gb.a = 5 + aiv_gb_get_flag(&gb, CARRY);
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 1);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == HALF);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
+}
+
+TEST(sbc_a_d8_zero)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 4;
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 0);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
+}
+
+TEST(sbc_a_d8_zero_carry)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    aiv_gb_set_flag(&gb, CARRY, 1);
+
+    gb.a = 4 + aiv_gb_get_flag(&gb, CARRY);
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x04;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 0);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == ZERO);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == HALF);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == CARRY);
+}
+
+TEST(sbc_a_d8_overflow)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.a = 4;
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x05;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 255);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == HALF);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 0);
+}
+
+TEST(sbc_a_d8_overflow_carry)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    aiv_gb_set_flag(&gb, CARRY, 1);
+
+    gb.a = 4 + aiv_gb_get_flag(&gb, CARRY);
+
+    gb.cartridge[0] = 0xde;
+    gb.cartridge[1] = 0x05;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 2);
+    ASSERT_THAT(gb.a == 255);
+
+    ASSERT_THAT(aiv_gb_get_flag(&gb, ZERO) == 0);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, NEG) == NEG);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, HALF) == HALF);
+    ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 0);
+}
+
 void aiv_gb_tests_run_opcodes_d0()
 {
     RUN_TEST(pop_de);
@@ -325,4 +448,11 @@ void aiv_gb_tests_run_opcodes_d0()
 
     RUN_TEST(call_c_a16);
     RUN_TEST(call_c_a16_red_light);
+
+    RUN_TEST(sbc_a_d8);
+    RUN_TEST(sbc_a_d8_carry);
+    RUN_TEST(sbc_a_d8_zero);
+    RUN_TEST(sbc_a_d8_zero_carry);
+    RUN_TEST(sbc_a_d8_overflow);
+    RUN_TEST(sbc_a_d8_overflow_carry);
 }
