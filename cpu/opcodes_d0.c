@@ -3,7 +3,7 @@
 //RET NC
 static int aiv_gb_opcode_d0(aiv_gameboy *gb)
 {
-    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
+    if (aiv_gb_get_flag(gb, CARRY) == CARRY)
     {
         return 8;
     }
@@ -27,7 +27,7 @@ static int aiv_gb_opcode_d1(aiv_gameboy *gb)
 static int aiv_gb_opcode_d2(aiv_gameboy *gb)
 {
     //check if C == 1
-    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
+    if (aiv_gb_get_flag(gb, CARRY) == CARRY)
     {
         gb->pc += 2;
         return 12;
@@ -41,7 +41,7 @@ static int aiv_gb_opcode_d2(aiv_gameboy *gb)
 static int aiv_gb_opcode_d4(aiv_gameboy *gb)
 {
     //check if C == 1
-    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
+    if (aiv_gb_get_flag(gb, CARRY) == CARRY)
     {
         gb->pc += 2;
         return 12;
@@ -115,6 +115,22 @@ static int aiv_gb_opcode_da(aiv_gameboy *gb)
 }
 
 //CALL C,a16
+static int aiv_gb_opcode_dc(aiv_gameboy *gb)
+{
+    //check if C == 0
+    if (!aiv_gb_get_flag(gb, CARRY))
+    {
+        gb->pc += 2;
+        return 12;
+    }
+
+    aiv_gb_memory_write8(gb, gb->sp, gb->pc + 2);
+    gb->sp -= 1;
+
+    gb->pc = aiv_gb_memory_read16(gb, gb->pc);
+
+    return 24;
+}
 
 //SBC A,d8
 
@@ -130,4 +146,5 @@ void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
     gb->opcodes[0xd6] = aiv_gb_opcode_d6;
     gb->opcodes[0xd8] = aiv_gb_opcode_d8;
     gb->opcodes[0xda] = aiv_gb_opcode_da;
+    gb->opcodes[0xdc] = aiv_gb_opcode_dc;
 }
