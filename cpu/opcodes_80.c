@@ -1,5 +1,5 @@
 #include <aiv_gb.h>
-
+#include <stdio.h>
 static int check_set_h(aiv_gameboy *gb)
 {
     u8_t value = gb->a & 0x0f;
@@ -10,19 +10,26 @@ static int check_set_h(aiv_gameboy *gb)
     return 0;
 }
 
-static int add(aiv_gameboy *gb, u8_t adder)
+static void add(aiv_gameboy *gb, u8_t adder)
 {
     if (check_set_h(gb) == 1)
         SET_H((*gb));
-
-    gb->a += adder;
+  
+    u16_t sum = gb->a + adder;
+   
+    if (sum > 0xff)
+        SET_C((*gb));
 
     if (gb->a == 0)
         SET_Z((*gb));
 
     UNSET_N((*gb));
+
+    gb->a = sum & 0xFF;
+
 }
-static int adc(aiv_gameboy *gb, u8_t adder)
+
+static void adc(aiv_gameboy *gb, u8_t adder)
 {
     if (check_set_h(gb) == 1)
         SET_H((*gb));
@@ -37,6 +44,7 @@ static int adc(aiv_gameboy *gb, u8_t adder)
 
     UNSET_N((*gb));
 }
+
 
 static int aiv_gb_opcode_80(aiv_gameboy *gb)
 {
@@ -76,7 +84,8 @@ static int aiv_gb_opcode_85(aiv_gameboy *gb)
 
 static int aiv_gb_opcode_86(aiv_gameboy *gb)
 {
-    add(gb, gb->hl);
+
+    add(gb, aiv_gb_memory_read8(gb, gb->hl));
     return 8;
 }
 
@@ -123,7 +132,7 @@ static int aiv_gb_opcode_8d(aiv_gameboy *gb)
 
 static int aiv_gb_opcode_8e(aiv_gameboy *gb)
 {
-    adc(gb, gb->hl);
+    adc(gb, aiv_gb_memory_read8(gb, gb->hl));
     return 8;
 }
 

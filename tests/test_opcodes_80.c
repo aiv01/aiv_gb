@@ -101,7 +101,8 @@ TEST(check_add_a_hl)
     gb.cartridge[0] = 0x86;
 
     gb.a = 2;
-    gb.hl = 3;
+    gb.hl = 300;
+    aiv_gb_memory_write8(&gb, gb.hl, 3);
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 5);
 }
@@ -198,11 +199,56 @@ TEST(check_adc_a_hl)
     gb.cartridge[0] = 0x8e;
 
     gb.a = 2;
-    gb.hl = 3;
+    //address
+    gb.hl = 300;
+    aiv_gb_memory_write8(&gb, gb.hl, 3);
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a == 5);
 }
 //----------------------------------
+
+TEST(check_carry_flag)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.cartridge[0] = 0x80;
+    
+    gb.a = 2500;
+    gb.b = 1000;
+    aiv_gb_memory_write8(&gb, gb.a, 250);
+    aiv_gb_memory_write8(&gb, gb.b, 10);
+
+    aiv_gb_tick(&gb);
+    ASSERT_THAT(gb.a < 255); 
+    u8_t value = aiv_gb_memory_read8(&gb, gb.f);
+    ASSERT_THAT(value == 0x10);
+}
+
+TEST(check_n_flag)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.cartridge[0] = 0x80;
+
+    gb.a = 2;
+    gb.b = 3;
+    aiv_gb_tick(&gb);
+    ASSERT_THAT(gb.f == 0x00);
+}
+
+TEST(check_zero_flag)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.cartridge[0] = 0x80;
+   
+    gb.a = 10;
+    gb.b = -10;
+    aiv_gb_tick(&gb);
+    u8_t value = aiv_gb_memory_read8(&gb, gb.f);
+    ASSERT_THAT(value == 0x00);
+}
+
 
 void aiv_gb_tests_run_opcodes_80()
 {
@@ -216,13 +262,15 @@ void aiv_gb_tests_run_opcodes_80()
     RUN_TEST(check_add_a_hl);
     RUN_TEST(check_add_a_a);
     RUN_TEST(check_adc_a_b);
-    RUN_TEST(check_add_a_c);
+    RUN_TEST(check_adc_a_c);
     RUN_TEST(check_adc_a_d);
     RUN_TEST(check_adc_a_e);
     RUN_TEST(check_adc_a_h);
     RUN_TEST(check_adc_a_l);
     RUN_TEST(check_adc_a_hl);
     RUN_TEST(check_adc_a_a);
-
+    RUN_TEST(check_carry_flag);
+    RUN_TEST(check_zero_flag);
+    RUN_TEST(check_n_flag);
     PRINT_TEST_RESULTS();
 }
