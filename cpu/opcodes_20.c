@@ -3,10 +3,9 @@
 // JR NZ, r8
 static int aiv_gb_opcode_20(aiv_gameboy *gb)
 {
-    s8_t val = aiv_gb_memory_read8(gb, gb->pc);
-    gb->pc += 1;
+    s8_t val = aiv_gb_memory_read8(gb, gb->pc++);
 
-    if(GET_Z(gb))
+    if (aiv_gb_get_flag(gb, ZERO))
     {
         s16_t _pc = gb->pc;
         _pc += val;
@@ -22,7 +21,7 @@ static int aiv_gb_opcode_28(aiv_gameboy *gb)
     s8_t val = aiv_gb_memory_read8(gb, gb->pc);
     gb->pc += 1;
 
-    if(GET_Z(gb) == 0)
+    if(aiv_gb_get_flag(gb, ZERO) == 0)
     {
         s16_t _pc = gb->pc;
         _pc += val;
@@ -48,6 +47,14 @@ static int aiv_gb_opcode_26(aiv_gameboy *gb)
     return 8;
 }
 
+// LD L, d8
+static int aiv_gb_opcode_2E(aiv_gameboy *gb)
+{
+    gb->l = aiv_gb_memory_read8(gb, gb->pc);
+    gb->pc += 1;
+    return 8;
+}
+
 // INC HL
 static int aiv_gb_opcode_23(aiv_gameboy *gb)
 {
@@ -55,24 +62,23 @@ static int aiv_gb_opcode_23(aiv_gameboy *gb)
     return 8;
 }
 
+// DEC HL
+static int aiv_gb_opcode_2B(aiv_gameboy *gb)
+{
+    gb->hl--;
+    return 8;
+}
+
 // INC H
 static int aiv_gb_opcode_24(aiv_gameboy *gb)
 {
-    u8_t val = gb->h & 0x0f;
-    val++;
+    u8_t val = (gb->h & 0x0f) + 1;
+    aiv_gb_set_flag(gb, HALF, (val == 0x10));
 
-    if(val == 0x10)
-        SET_H((*gb));
-    else
-        UNSET_H((*gb));
-
-    UNSET_N((*gb));
+    aiv_gb_set_flag(gb, NEG, 0);
 
     gb->h++;
-    if(gb->h == 0)
-        SET_Z((*gb));
-    else
-        UNSET_Z((*gb));
+    aiv_gb_set_flag(gb, ZERO, (gb->h) == 0);
 
     return 4;
 }
@@ -80,21 +86,41 @@ static int aiv_gb_opcode_24(aiv_gameboy *gb)
 // DEC H
 static int aiv_gb_opcode_25(aiv_gameboy *gb)
 {
-    u8_t val = gb->h & 0x0f;
-    val--;
+    u8_t val = (gb->h & 0x0f) - 1;
+    aiv_gb_set_flag(gb, HALF, (val == 0xff));
 
-    if(val == 0xff)
-        SET_H((*gb));
-    else
-        UNSET_H((*gb));
-
-    SET_N((*gb));
+    aiv_gb_set_flag(gb, NEG, 1);
 
     gb->h--;
-    if(gb->h == 0)
-        SET_Z((*gb));
-    else
-        UNSET_Z((*gb));
+    aiv_gb_set_flag(gb, ZERO, (gb->h) == 0);
+
+    return 4;
+}
+
+// INC L
+static int aiv_gb_opcode_2C(aiv_gameboy *gb)
+{
+    u8_t val = (gb->l & 0x0f) + 1;
+    aiv_gb_set_flag(gb, HALF, (val == 0x10));
+
+    aiv_gb_set_flag(gb, NEG, 0);
+
+    gb->l++;
+    aiv_gb_set_flag(gb, ZERO, (gb->l) == 0);
+
+    return 4;
+}
+
+// DEC L
+static int aiv_gb_opcode_2D(aiv_gameboy *gb)
+{
+    u8_t val = (gb->l & 0x0f) - 1;
+    aiv_gb_set_flag(gb, HALF, (val == 0xff));
+
+    aiv_gb_set_flag(gb, NEG, 1);
+
+    gb->l--;
+    aiv_gb_set_flag(gb, ZERO, (gb->l) == 0);
 
     return 4;
 }
@@ -108,38 +134,79 @@ static int aiv_gb_opcode_22(aiv_gameboy *gb)
 
     aiv_gb_memory_write8(gb, val, gb->a);
     gb->pc += 1;
-    return 12;
+    return 8;
 }
+
+// LD A, (HL+)
+static int aiv_gb_opcode_2A(aiv_gameboy *gb)
+{
+    u8_t val = aiv_gb_memory_read8(gb, gb->hl);
+    gb->pc += 1;
+    gb->hl++;
+
+    gb->a = val;
+    return 8;
+}
+
 
 // ADD HL, HL
 static int aiv_gb_opcode_29(aiv_gameboy *gb)
 {
-    UNSET_N((*gb));
+    aiv_gb_set_flag(gb, NEG, 0);
 
     u16_t l = gb->l;
-    l += l;
-    if(l % 0xff)
+    aiv_gb_set_flag(gb, HALF, (l + l) / 0xff);
+
+    u32_t hl = gb->hl + gb->hl;
+    aiv_gb_set_flag(gb, CARRY, hl / 0xffff);
+    gb->hl = hl % 0xffff;
+
+    return 8;
+}
+
+// CPL
+static int aiv_gb_opcode_2F(aiv_gameboy *gb)
+{
+    gb->a = ~gb->a;
+ 
+    aiv_gb_set_flag(gb, NEG, 1);
+    aiv_gb_set_flag(gb, HALF, 1);
+    return 4;
+}
+
+// DAA
+static int aiv_gb_opcode_27(aiv_gameboy *gb)
+{
+    // if addiction
+    if (aiv_gb_get_flag(gb, NEG) == 0)
     {
-        SET_C((*gb));
-    }
-    else
+        if (aiv_gb_get_flag(gb, CARRY) || gb->a > 0x99)
+        { 
+            gb->a += 0x60; 
+            aiv_gb_set_flag(gb, CARRY, 1);
+        }
+        else
+            aiv_gb_set_flag(gb, CARRY, 0);
+
+        if (aiv_gb_get_flag(gb, HALF) || (gb->a & 0x0f) > 0x09)
+            gb->a += 0x6;
+    } 
+    // if subtraction
+    else 
     {
-        UNSET_C((*gb));
+        if (aiv_gb_get_flag(gb, CARRY))
+            gb->a -= 0x60;
+        else
+            aiv_gb_set_flag(gb, CARRY, 0);
+        
+        if (aiv_gb_get_flag(gb, HALF))
+            gb->a -= 0x6;
     }
 
-    u32_t hl = gb->hl;
-    hl += hl;
-    if(hl / 0xffff)
-    {
-        SET_C((*gb));
-        gb->hl = hl - 0xffff;
-    }
-    else
-    {
-        UNSET_C((*gb));
-        gb->hl = hl;
-    }
-    return 8;
+    aiv_gb_set_flag(gb, ZERO, (gb->a == 0));
+    aiv_gb_set_flag(gb, HALF, 0);
+
+    return 4;
 }
 
 void aiv_gb_register_opcodes_20(aiv_gameboy *gb)
@@ -151,7 +218,13 @@ void aiv_gb_register_opcodes_20(aiv_gameboy *gb)
     gb->opcodes[0x24] = aiv_gb_opcode_24;
     gb->opcodes[0x25] = aiv_gb_opcode_25;
     gb->opcodes[0x26] = aiv_gb_opcode_26;
+    gb->opcodes[0x27] = aiv_gb_opcode_27;
     gb->opcodes[0x28] = aiv_gb_opcode_28;
     gb->opcodes[0x29] = aiv_gb_opcode_29;
-
+    gb->opcodes[0x2A] = aiv_gb_opcode_2A;
+    gb->opcodes[0x2B] = aiv_gb_opcode_2B;
+    gb->opcodes[0x2C] = aiv_gb_opcode_2C;
+    gb->opcodes[0x2D] = aiv_gb_opcode_2D;
+    gb->opcodes[0x2E] = aiv_gb_opcode_2E;
+    gb->opcodes[0x2F] = aiv_gb_opcode_2F;
 }
