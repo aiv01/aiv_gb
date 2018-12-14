@@ -231,6 +231,36 @@ TEST(ret_c_red_light)
     ASSERT_THAT(gb.ticks == 8);
 }
 
+TEST(jp_c_a16)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    aiv_gb_set_flag(&gb, CARRY, 1);
+
+    gb.cartridge[0] = 0xd2;
+    gb.cartridge[1] = 0x80;
+    gb.cartridge[2] = 0x80;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 3);
+    ASSERT_THAT(gb.ticks == 12);
+}
+
+TEST(jp_c_a16_red_light)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.cartridge[0] = 0xd2;
+    gb.cartridge[1] = 0x80;
+    gb.cartridge[2] = 0x80;
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.pc == 0x8080);
+    ASSERT_THAT(gb.ticks == 16);
+}
+
 void aiv_gb_tests_run_opcodes_d0()
 {
     RUN_TEST(pop_de);
@@ -252,4 +282,7 @@ void aiv_gb_tests_run_opcodes_d0()
 
     RUN_TEST(ret_c);
     RUN_TEST(ret_c_red_light);
+
+    RUN_TEST(jp_c_a16);
+    RUN_TEST(jp_c_a16_red_light);
 }

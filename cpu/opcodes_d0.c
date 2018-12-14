@@ -101,6 +101,18 @@ static int aiv_gb_opcode_d8(aiv_gameboy *gb)
 //RETI
 
 //JP C,a16
+static int aiv_gb_opcode_da(aiv_gameboy *gb)
+{
+    //check if C == 0
+    if (!aiv_gb_get_flag(gb, CARRY))
+    {
+        gb->pc += 2;
+        return 12;
+    }
+
+    gb->pc = aiv_gb_memory_read16(gb, gb->pc);
+    return 16;
+}
 
 //CALL C,a16
 
@@ -117,4 +129,5 @@ void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
     gb->opcodes[0xd5] = aiv_gb_opcode_d5;
     gb->opcodes[0xd6] = aiv_gb_opcode_d6;
     gb->opcodes[0xd8] = aiv_gb_opcode_d8;
+    gb->opcodes[0xda] = aiv_gb_opcode_da;
 }
