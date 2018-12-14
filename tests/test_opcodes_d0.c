@@ -95,9 +95,9 @@ TEST(call_nc_a16)
     gb.cartridge[3] = 0xd0;
     aiv_gb_tick(&gb);
 
-    u8_t next_opcode = aiv_gb_memory_read8(&gb, gb.cartridge[gb.sp + 1]);
+    u16_t next_opcode = aiv_gb_memory_read8(&gb, gb.sp + 1);
 
-    ASSERT_THAT(next_opcode == 0xd0);
+    ASSERT_THAT(next_opcode == 3);
     ASSERT_THAT(gb.pc == 0x8080);
     ASSERT_THAT(gb.ticks == 24);
 }
@@ -275,9 +275,9 @@ TEST(call_c_a16)
     gb.cartridge[3] = 0xd0;
     aiv_gb_tick(&gb);
 
-    u8_t next_opcode = aiv_gb_memory_read8(&gb, gb.cartridge[gb.sp + 1]);
+    u16_t next_opcode = aiv_gb_memory_read16(&gb, gb.sp + 1);
 
-    ASSERT_THAT(next_opcode == 0xd0);
+    ASSERT_THAT(next_opcode == 3);
     ASSERT_THAT(gb.pc == 0x8080);
     ASSERT_THAT(gb.ticks == 24);
 }
@@ -421,6 +421,41 @@ TEST(sbc_a_d8_overflow_carry)
     ASSERT_THAT(aiv_gb_get_flag(&gb, CARRY) == 0);
 }
 
+TEST(rst_10h)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+    gb.sp = 0xff;
+
+    gb.cartridge[0] = 0xd7;
+    aiv_gb_tick(&gb);
+
+    u16_t stored_opcode = aiv_gb_memory_read16(&gb, gb.sp + 1);
+
+    ASSERT_THAT(stored_opcode == 1);
+    ASSERT_THAT(gb.ticks == 16);
+    ASSERT_THAT(gb.pc == 0x0010);
+}
+
+/*
+TEST(reti)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.cartridge[0] = 0xd9;
+    gb.cartridge[1] = 0x80;
+    gb.cartridge[2] = 0x80;
+    aiv_gb_tick(&gb);
+
+    u8_t interrupt = aiv_gb_memory_read8(&gb, 0xffff);
+
+    ASSERT_THAT(interrupt == 0xff);
+    ASSERT_THAT(gb.pc == 0x8080);
+    ASSERT_THAT(gb.ticks == 16);
+}
+*/
+
 void aiv_gb_tests_run_opcodes_d0()
 {
     RUN_TEST(pop_de);
@@ -445,6 +480,10 @@ void aiv_gb_tests_run_opcodes_d0()
 
     RUN_TEST(jp_c_a16);
     RUN_TEST(jp_c_a16_red_light);
+
+    RUN_TEST(rst_10h);
+
+    //RUN_TEST(reti);
 
     RUN_TEST(call_c_a16);
     RUN_TEST(call_c_a16_red_light);

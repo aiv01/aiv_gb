@@ -47,7 +47,7 @@ static int aiv_gb_opcode_d4(aiv_gameboy *gb)
         return 12;
     }
 
-    aiv_gb_memory_write8(gb, gb->sp, gb->pc + 2);
+    aiv_gb_memory_write16(gb, gb->sp, gb->pc + 2);
     gb->sp -= 1;
 
     gb->pc = aiv_gb_memory_read16(gb, gb->pc);
@@ -82,6 +82,15 @@ static int aiv_gb_opcode_d6(aiv_gameboy *gb)
 }
 
 //RST 10H
+static int aiv_gb_opcode_d7(aiv_gameboy *gb)
+{
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->pc);
+    gb->sp -= 2;
+
+    gb->pc = 0x0010;
+
+    return 16;
+}
 
 //RET C
 static int aiv_gb_opcode_d8(aiv_gameboy *gb)
@@ -98,7 +107,18 @@ static int aiv_gb_opcode_d8(aiv_gameboy *gb)
     return 20;
 }
 
+/*
 //RETI
+static int aiv_gb_opcode_d9(aiv_gameboy *gb)
+{
+    gb->pc = aiv_gb_memory_read16(gb, gb->sp + 1);
+    gb->sp += 2;
+
+    aiv_gb_memory_write8(gb, 0xffff, 0xff);
+
+    return 16;
+}
+*/
 
 //JP C,a16
 static int aiv_gb_opcode_da(aiv_gameboy *gb)
@@ -124,7 +144,7 @@ static int aiv_gb_opcode_dc(aiv_gameboy *gb)
         return 12;
     }
 
-    aiv_gb_memory_write8(gb, gb->sp, gb->pc + 2);
+    aiv_gb_memory_write16(gb, gb->sp, gb->pc + 2);
     gb->sp -= 1;
 
     gb->pc = aiv_gb_memory_read16(gb, gb->pc);
@@ -161,6 +181,8 @@ void aiv_gb_register_opcodes_d0(aiv_gameboy *gb)
     gb->opcodes[0xd5] = aiv_gb_opcode_d5;
     gb->opcodes[0xd6] = aiv_gb_opcode_d6;
     gb->opcodes[0xd8] = aiv_gb_opcode_d8;
+    gb->opcodes[0xd7] = aiv_gb_opcode_d7;
+    //gb->opcodes[0xd9] = aiv_gb_opcode_d9;
     gb->opcodes[0xda] = aiv_gb_opcode_da;
     gb->opcodes[0xdc] = aiv_gb_opcode_dc;
     gb->opcodes[0xde] = aiv_gb_opcode_de;
