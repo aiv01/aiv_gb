@@ -3,7 +3,7 @@
 //RET NC
 static int aiv_gb_opcode_d0(aiv_gameboy *gb)
 {
-    if (aiv_gb_get_flag(gb, CARRY))
+    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
     {
         return 8;
     }
@@ -27,7 +27,7 @@ static int aiv_gb_opcode_d1(aiv_gameboy *gb)
 static int aiv_gb_opcode_d2(aiv_gameboy *gb)
 {
     //check if C == 1
-    if (aiv_gb_get_flag(gb, CARRY))
+    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
     {
         gb->pc += 2;
         return 12;
@@ -41,7 +41,7 @@ static int aiv_gb_opcode_d2(aiv_gameboy *gb)
 static int aiv_gb_opcode_d4(aiv_gameboy *gb)
 {
     //check if C == 1
-    if (aiv_gb_get_flag(gb, CARRY))
+    if (aiv_gb_get_flag(gb, CARRY)==CARRY)
     {
         gb->pc += 2;
         return 12;
