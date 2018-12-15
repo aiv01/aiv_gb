@@ -42,7 +42,7 @@ TEST(ret_nc_red_light)
     aiv_gb_init(&gb);
     gb.sp = 0xff;
 
-    SET_C(gb);
+    aiv_gb_set_flag(&gb, CARRY, 1);
 
     aiv_gb_memory_write16(&gb, gb.sp - 1, 0xd000);
     gb.sp -= 2;
