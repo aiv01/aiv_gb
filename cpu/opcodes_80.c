@@ -28,7 +28,7 @@ static void add(aiv_gameboy *gb, u8_t adder)
 
 static void adc(aiv_gameboy *gb, u8_t adder)
 {
-    if (gb->f == CARRY)
+    if (aiv_gb_get_flag(gb,CARRY) != 0)
         gb->a += 1;
   
     if (check_set_h(gb) == 1)
