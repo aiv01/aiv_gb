@@ -21,6 +21,16 @@ static int aiv_gb_opcode_31(aiv_gameboy *gb)
     gb->pc += 2;
     return 12;
 }
+static int aiv_gb_opcode_32(aiv_gameboy *gb)
+{
+    u16_t val = aiv_gb_memory_read16(gb, gb->hl);
+    gb->pc += 2;
+    gb->hl--;
+
+    aiv_gb_memory_write8(gb, val, gb->a);
+    gb->pc += 1;
+    return 12;
+}
 //inc sp
 static int aiv_gb_opcode_33(aiv_gameboy *gb)
 {
