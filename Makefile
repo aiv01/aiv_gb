@@ -34,3 +34,4 @@ gameboy: $(OPCODES)
 
 clean:
 	rm *.o cpu/*.o tests/*.o
+	rm run_tests

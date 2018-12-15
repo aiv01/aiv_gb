@@ -3,6 +3,7 @@
 // JR 0x30
 static int aiv_gb_opcode_30(aiv_gameboy *gb)
 {
+
     return 0;
 }
 
@@ -13,27 +14,41 @@ static int aiv_gb_opcode_31(aiv_gameboy *gb)
     gb->pc += 2;
     return 12;
 }
+//inc sp
 static int aiv_gb_opcode_33(aiv_gameboy *gb)
 {
     gb->sp++;
-    gb->pc++;
     return 8;
 }
+//inc (hl)
 static int aiv_gb_opcode_34(aiv_gameboy *gb)
 {
     u8_t val = aiv_gb_memory_read8(gb,gb->hl);
+    
     val++;
     aiv_gb_memory_write8(gb,gb->hl, val);
-    gb->pc ++;
     
+    if(val == 0){
+        SET_Z((*gb));
+    }
+    else{
+        UNSET_Z((*gb));
+    }
+    if(val >15 ){
+        SET_H((*gb));
+    }
+    else{
+        UNSET_H((*gb));
+    }
+    UNSET_N((*gb));
     return 12;
 }
+//dec (hl)
 static int aiv_gb_opcode_35(aiv_gameboy *gb)
 {
     u8_t val = aiv_gb_memory_read8(gb,gb->hl);
     val--;
     aiv_gb_memory_write8(gb,gb->hl, val);
-    gb->pc ++;
 
     return 12;
 }
