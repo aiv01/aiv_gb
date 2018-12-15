@@ -28,11 +28,11 @@ static void add(aiv_gameboy *gb, u8_t adder)
 
 static void adc(aiv_gameboy *gb, u8_t adder)
 {
+    if (gb->f == CARRY)
+        gb->a += 1;
+  
     if (check_set_h(gb) == 1)
         aiv_gb_set_flag(gb, HALF, 1);
-
-    if (gb->f == 0x10)
-        gb->a += 1;
 
     u16_t sum = gb->a + adder;
 
