@@ -217,12 +217,24 @@ TEST(check_carry_flag)
     GB_INIT
     gb.cartridge[0] = ADD_A_B;
     
-    gb.a = 250;
-    gb.b = 100;
+    gb.a = 150;
+    gb.b = 150;
 
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.a < 255); 
     ASSERT_THAT(gb.f == CARRY);
+}
+
+TEST(check_h_flag)
+{
+    GB_INIT
+    gb.cartridge[0] = ADD_A_B;
+    
+    gb.a = 8;
+    gb.b = 8;
+
+    aiv_gb_tick(&gb);
+    ASSERT_THAT(gb.f == HALF);
 }
 
 TEST(check_n_flag)
@@ -244,6 +256,7 @@ TEST(check_zero_flag)
     gb.a = 0;
     gb.b = 0;
     aiv_gb_tick(&gb);
+    ASSERT_THAT(gb.a == 0);
     ASSERT_THAT(gb.f == ZERO);
 }
 
@@ -270,5 +283,6 @@ void aiv_gb_tests_run_opcodes_80()
     RUN_TEST(check_carry_flag);
     RUN_TEST(check_zero_flag);
     RUN_TEST(check_n_flag);
+    RUN_TEST(check_h_flag);
     PRINT_TEST_RESULTS();
 }

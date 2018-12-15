@@ -19,11 +19,11 @@ static void add(aiv_gameboy *gb, u8_t adder)
 
     aiv_gb_set_flag(gb, CARRY, sum > 0xff);
 
-    aiv_gb_set_flag(gb, ZERO, gb->a == 0);
-
-    aiv_gb_set_flag(gb, NEG, 1);
+    //reset N flag
+    aiv_gb_set_flag(gb, NEG, 0);
 
     gb->a = sum & 0xFF;
+    aiv_gb_set_flag(gb, ZERO, gb->a == 0);
 }
 
 static void adc(aiv_gameboy *gb, u8_t adder)
@@ -38,11 +38,11 @@ static void adc(aiv_gameboy *gb, u8_t adder)
 
     aiv_gb_set_flag(gb, CARRY, sum > 0xff);
 
-    aiv_gb_set_flag(gb, ZERO, gb->a == 0);
-
-    aiv_gb_set_flag(gb, NEG, 1);
+    aiv_gb_set_flag(gb, NEG, 0);
 
     gb->a = sum & 0xFF;
+
+    aiv_gb_set_flag(gb, ZERO, gb->a == 0);
 }
 
 static int aiv_gb_opcode_80(aiv_gameboy *gb)
