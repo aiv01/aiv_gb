@@ -134,6 +134,7 @@ int aiv_gb_opcode_ca(aiv_gameboy *gb)
 int aiv_gb_opcode_cb(aiv_gameboy *gb)
 {            
     int ticks=gb->prefix_opcodes[aiv_gb_memory_read8(gb,gb->pc)](gb);
+    gb->pc+=1;
     return ticks;
 }
 
