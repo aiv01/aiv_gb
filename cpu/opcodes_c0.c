@@ -132,9 +132,9 @@ int aiv_gb_opcode_ca(aiv_gameboy *gb)
 
 //PREFIX cb
 int aiv_gb_opcode_cb(aiv_gameboy *gb)
-{            
-    int ticks=gb->prefix_opcodes[aiv_gb_memory_read8(gb,gb->pc)](gb);
-    gb->pc+=1;
+{    
+    u8_t opcode = aiv_gb_memory_read8(gb, gb->pc++);
+    int ticks = gb->prefix_opcodes[opcode](gb);    
     return ticks;
 }
 
