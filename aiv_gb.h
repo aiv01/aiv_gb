@@ -63,7 +63,7 @@ typedef struct aiv_gameboy
 
     // opcodes table, each entry is a pointer to a function
     int (*opcodes[256])(struct aiv_gameboy *);
-
+    int (*prefix_opcodes[256])(struct aiv_gameboy *);
     u8_t cartridge[CARTRIDGE_SIZE];
 
 } aiv_gameboy;
@@ -89,6 +89,13 @@ void aiv_gb_register_opcodes_c0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_d0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_e0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_f0(aiv_gameboy *gb);
+
+void aiv_gb_register_prefix_cb_00(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_10(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_20(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_30(aiv_gameboy *gb);
+
+
 
 int aiv_gb_tick(aiv_gameboy *gb);
 int aiv_gb_loop(aiv_gameboy *gb);

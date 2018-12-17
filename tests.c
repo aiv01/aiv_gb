@@ -25,15 +25,26 @@ void aiv_gb_tests_run_opcodes_d0();
 void aiv_gb_tests_run_opcodes_e0();
 void aiv_gb_tests_run_opcodes_f0();
 
+void aiv_gb_tests_run_prefix_00();
+void aiv_gb_tests_run_prefix_10();
+void aiv_gb_tests_run_prefix_20();
+void aiv_gb_tests_run_prefix_30();
+
+
+
 int main(int argc, char **argv)
 {
-    aiv_gb_tests_run_opcodes_00();
-    aiv_gb_tests_run_opcodes_b0();
-    aiv_gb_tests_run_opcodes_60();
-    aiv_gb_tests_run_opcodes_20();
-    aiv_gb_tests_run_opcodes_90();
-    aiv_gb_tests_run_opcodes_70();
-    aiv_gb_tests_run_opcodes_d0();
+    //aiv_gb_tests_run_opcodes_00();
+    //aiv_gb_tests_run_opcodes_b0();
+    //aiv_gb_tests_run_opcodes_60();
+    //aiv_gb_tests_run_opcodes_20();
+    //aiv_gb_tests_run_opcodes_90();
+    //aiv_gb_tests_run_opcodes_70();
+    //aiv_gb_tests_run_opcodes_d0();
+    //aiv_gb_tests_run_prefix_00();
+    //aiv_gb_tests_run_prefix_10();
+    //aiv_gb_tests_run_prefix_20();
+    aiv_gb_tests_run_prefix_30();
 
     PRINT_TEST_RESULTS();
     return 0;
