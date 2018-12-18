@@ -1,6 +1,5 @@
 SECTION "code", rom0
 
-STOP 
 LD DE, $AA
 LD A, 3
 LD [DE], A
@@ -14,7 +13,7 @@ RLA
 
 JR 2
 
-STOP 
+LD DE, $02
 LD DE, $03
 
 LD HL, $02
@@ -29,4 +28,4 @@ LD E, $A
 LD A, $C
 RRA
 
-HALT
+STOP 
