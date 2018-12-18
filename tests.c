@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_20();
     aiv_gb_tests_run_opcodes_30();
     aiv_gb_tests_run_opcodes_40();
-   // aiv_gb_tests_run_opcodes_50();
+    aiv_gb_tests_run_opcodes_50();
     aiv_gb_tests_run_opcodes_60();
     aiv_gb_tests_run_opcodes_70();
     aiv_gb_tests_run_opcodes_80();
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_c0();
     aiv_gb_tests_run_opcodes_d0();
     aiv_gb_tests_run_opcodes_e0();
-    //aiv_gb_tests_run_opcodes_f0();
+    aiv_gb_tests_run_opcodes_f0();
 
     aiv_gb_tests_func_roberto();    
 
