@@ -24,7 +24,7 @@ extern int tests_executed;
 #define ASSERT_THAT(rule)                                                                                                           \
     if (!(rule))                                                                                                                    \
     {                                                                                                                               \
-        fprintf(stderr, "[%s %s] %s:%s FAILED at line %d: " #rule "\n", __DATE__, __TIME__, __FILE__, current_test_name, __LINE__); \
+        fprintf(stderr, "[%s %s] %s:%s \033[31mFAILED\033[0m at line %d: " #rule "\n", __DATE__, __TIME__, __FILE__, current_test_name, __LINE__); \
         *failed = -1;                                                                                                               \
         tests_failed++;                                                                                                             \
         return;                                                                                                                     \
