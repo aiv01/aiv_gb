@@ -19,5 +19,5 @@ TEST(func_pierettini)
 
 void aiv_gb_tests_func_pierettini()
 {
-    RUN_TEST(func_roberto);
+    RUN_TEST(func_pierettini);
 }
