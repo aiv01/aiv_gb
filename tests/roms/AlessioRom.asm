@@ -1,0 +1,30 @@
+SECTION "code", rom0
+
+STOP 0
+LD DE, $AA
+LD A, 3
+LD (DE), A
+INC DE
+INC D
+DEC D
+LD D, $5
+
+LD A, $B
+RLA
+
+JR 1
+
+LD DE, $03
+LD HL, $02
+ADD HL, DE
+
+LD A, (DE)
+DEC DE
+INC E
+DEC E
+LD E, $A
+
+LD A, $B
+RRA
+
+HALT
