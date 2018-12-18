@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_90();
     aiv_gb_tests_run_opcodes_70();
     aiv_gb_tests_run_opcodes_d0();
+    aiv_gb_tests_run_opcodes_a0();
 
     PRINT_TEST_RESULTS();
     return 0;
