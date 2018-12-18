@@ -3,42 +3,42 @@
 // LD (HL), B
 static int aiv_gb_opcode_70(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->b, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->b);
     return 8;
 }
 
 // LD (HL), C
 static int aiv_gb_opcode_71(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->c, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->c);
     return 8;
 }
 
 // LD (HL), D
 static int aiv_gb_opcode_72(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->d, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->d);
     return 8;
 }
 
 // LD (HL), E
 static int aiv_gb_opcode_73(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->e, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->e);
     return 8;
 }
 
 // LD (HL), H
 static int aiv_gb_opcode_74(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->h, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->h);
     return 8;
 }
 
 // LD (HL), L
 static int aiv_gb_opcode_75(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->l, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->l);
     return 8;
 }
 
@@ -52,56 +52,56 @@ static int aiv_gb_opcode_76(aiv_gameboy *gb)
 // LD (HL), A
 static int aiv_gb_opcode_77(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->a, gb->hl);
+    aiv_gb_memory_write8(gb, gb->hl, gb->a);
     return 8;
 }
 
 // LD A, B
 static int aiv_gb_opcode_78(aiv_gameboy *gb)
 {
-    gb->b = gb->a;
+    gb->a = gb->b;
     return 4;
 }
 
 // LD A, C
 static int aiv_gb_opcode_79(aiv_gameboy *gb)
 {
-    gb->c = gb->a;
+    gb->a = gb->c;
     return 4;
 }
 
 // LD A, D
 static int aiv_gb_opcode_7A(aiv_gameboy *gb)
 {
-    gb->d = gb->a;
+    gb->a = gb->d;
     return 4;
 }
 
 // LD A, E
 static int aiv_gb_opcode_7B(aiv_gameboy *gb)
 {
-    gb->e = gb->a;
+    gb->a = gb->e;
     return 4;
 }
 
 // LD A, H
 static int aiv_gb_opcode_7C(aiv_gameboy *gb)
 {
-    gb->h = gb->a;
+    gb->a = gb->h;
     return 4;
 }
 
 // LD A, L
 static int aiv_gb_opcode_7D(aiv_gameboy *gb)
 {
-    gb->l = gb->a;
+    gb->a = gb->l;
     return 4;
 }
 
 // LD A, (HL)
 static int aiv_gb_opcode_7E(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->hl, gb->a);
+    gb->a = aiv_gb_memory_read8(gb, gb->hl);
     return 8;
 }
 
