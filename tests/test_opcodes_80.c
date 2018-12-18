@@ -284,5 +284,4 @@ void aiv_gb_tests_run_opcodes_80()
     RUN_TEST(check_zero_flag);
     RUN_TEST(check_n_flag);
     RUN_TEST(check_h_flag);
-    PRINT_TEST_RESULTS();
 }
