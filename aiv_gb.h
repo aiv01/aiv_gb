@@ -103,3 +103,5 @@ void aiv_gb_set_flag(aiv_gameboy *gb, u8_t flag, u8_t value);
 u8_t aiv_gb_get_flag(aiv_gameboy *gb, u8_t flag);
 
 void aiv_gb_memory_init(aiv_gameboy *gb);
+
+int aiv_gb_load_cartridge(aiv_gameboy *gb, const char *filename);
