@@ -14,7 +14,7 @@ TEST(func_roberto)
     {
         ret = aiv_gb_tick(&gb);
     }
-    ASSERT_THAT(gb.e == 39);
+    ASSERT_THAT(gb.a == 39);
 }
 
 void aiv_gb_tests_func_roberto()

@@ -80,19 +80,12 @@ static int aiv_gb_opcode_fa(aiv_gameboy *gb)
 // CP d8
 static int aiv_gb_opcode_fe(aiv_gameboy *gb)
 {
-    if (aiv_gb_memory_read8(gb, gb->pc) == gb->a)
-    {
-        aiv_gb_set_flag(gb, ZERO, 1);
-        aiv_gb_set_flag(gb, HALF, 1);
-        aiv_gb_set_flag(gb, CARRY, 1);
-    }
-    else
-    {
-        aiv_gb_set_flag(gb, ZERO, 0);
-        aiv_gb_set_flag(gb, HALF, 0);
-        aiv_gb_set_flag(gb, CARRY, 0);
-    }
+    u8_t value = aiv_gb_memory_read8(gb, gb->pc++);
+    u8_t cp = gb->a - value;
 
+    aiv_gb_set_flag(gb, ZERO, cp == 0);
+    aiv_gb_set_flag(gb, HALF, (((gb->a & 0xf) - (value & 0x0f)) & 0x10) == 0x10);
+    aiv_gb_set_flag(gb, CARRY, gb->a < value);
     aiv_gb_set_flag(gb, NEG, 1);
     return 8;
 }
