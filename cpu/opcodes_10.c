@@ -3,6 +3,8 @@
 //STOP (?)
 static int aiv_gb_opcode_10(aiv_gameboy *gb)
 {
+    printf("STOP!");
+    return -1;
 }
 
 // LD DE, d16 (d16  means immediate 16 bit data)
@@ -87,7 +89,7 @@ static int aiv_gb_opcode_19(aiv_gameboy *gb)
 //LD A, (DE)
 static int aiv_gb_opcode_1a(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->a, gb->de);
+   gb->a= aiv_gb_memory_read8(gb, gb->de);
     return 8;
 }
 //DEC DE
@@ -117,7 +119,7 @@ static int aiv_gb_opcode_1d(aiv_gameboy *gb)
 //LD E,d8 (d8  means immediate 8 bit data)
 static int aiv_gb_opcode_1e(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, gb->e, gb->pc);
+   gb->e= aiv_gb_memory_read8(gb, gb->pc);
     gb->pc += 1;
     return 8;
 }
