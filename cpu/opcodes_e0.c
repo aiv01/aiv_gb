@@ -38,7 +38,7 @@ static int aiv_gb_opcode_e6(aiv_gameboy *gb)
 {
     u8_t d8 = aiv_gb_memory_read8(gb, gb->pc);
 
-    if (gb->a & d8 < 0x80)
+    if ((gb->a & d8) < 0x80)
     {
         aiv_gb_set_flag(gb, ZERO, 0);
         aiv_gb_set_flag(gb, NEG, 0);
@@ -81,4 +81,5 @@ void aiv_gb_register_opcodes_e0(aiv_gameboy *gb)
     gb->opcodes[0xe5] = aiv_gb_opcode_e5;
     gb->opcodes[0xe6] = aiv_gb_opcode_e6;
     gb->opcodes[0xe7] = aiv_gb_opcode_e7;
+    gb->opcodes[0xe8] = aiv_gb_opcode_e8;
 }

@@ -25,32 +25,29 @@ void aiv_gb_tests_run_opcodes_d0();
 void aiv_gb_tests_run_opcodes_e0();
 void aiv_gb_tests_run_opcodes_f0();
 
+void aiv_gb_tests_func_roberto();
+
 int main(int argc, char **argv)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    aiv_gb_tests_run_opcodes_e0();
-=======
-=======
-    aiv_gb_tests_run_opcodes_30();
->>>>>>> a686eba5ed17052de8b04078af232b796fe46d38
-    aiv_gb_tests_run_opcodes_00();
 
-    aiv_gb_tests_run_opcodes_c0();
-    aiv_gb_tests_run_opcodes_80();
-   
-    aiv_gb_tests_run_opcodes_b0();
-    aiv_gb_tests_run_opcodes_60();
+    aiv_gb_tests_run_opcodes_00();
+    aiv_gb_tests_run_opcodes_10();
     aiv_gb_tests_run_opcodes_20();
-    aiv_gb_tests_run_opcodes_90();
+    aiv_gb_tests_run_opcodes_30();
+    aiv_gb_tests_run_opcodes_40();
+    aiv_gb_tests_run_opcodes_50();
+    aiv_gb_tests_run_opcodes_60();
     aiv_gb_tests_run_opcodes_70();
+    aiv_gb_tests_run_opcodes_80();
+    aiv_gb_tests_run_opcodes_90();
     aiv_gb_tests_run_opcodes_a0();
+    aiv_gb_tests_run_opcodes_b0();
+    aiv_gb_tests_run_opcodes_c0();
     aiv_gb_tests_run_opcodes_d0();
-<<<<<<< HEAD
->>>>>>> e0fb7229e4ef95158e888d6b3da4f177448f9157
-=======
-    
->>>>>>> a686eba5ed17052de8b04078af232b796fe46d38
+    aiv_gb_tests_run_opcodes_e0();
+    aiv_gb_tests_run_opcodes_f0();
+
+    aiv_gb_tests_func_roberto();    
 
     PRINT_TEST_RESULTS();
     return 0;
