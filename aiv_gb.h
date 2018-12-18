@@ -112,3 +112,5 @@ u8_t aiv_gb_get_flag(aiv_gameboy *gb, u8_t flag);
 void aiv_gb_memory_init(aiv_gameboy *gb);
 
 int aiv_gb_load_cartridge(aiv_gameboy *gb, const char *filename);
+
+void aiv_gb_vram_to_rgb(aiv_gameboy *gb, u8_t *data);
