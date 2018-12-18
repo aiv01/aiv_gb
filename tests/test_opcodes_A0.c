@@ -17,7 +17,7 @@ TEST(and_b_green_0){
     ASSERT_THAT((gb.f & ZERO) != ZERO);
     ASSERT_THAT(gb.a == 2);
     ASSERT_THAT(gb.ticks == 4);
-    ASSERT_THAT(gb.pc == 1);
+    ASSERT_THAT(gb.pc == 0);
 }
 TEST(and_b_green_1){
     aiv_gameboy gb;
@@ -62,7 +62,6 @@ TEST(and_c_green_1){
     gb.cartridge[0] = 0xA1;
     aiv_gb_tick(&gb);
 
-    printf("\n%d\n\n", gb.f);
     ASSERT_THAT((gb.f & HALF) == HALF);
     ASSERT_THAT((gb.f & ZERO) != ZERO);
     ASSERT_THAT(gb.a == 24);
