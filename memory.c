@@ -30,32 +30,32 @@ static void aiv_gb_memory_write_cartridge(aiv_gameboy *gb, u16_t address, u8_t v
 
 static u8_t aiv_gb_memory_read_vram(aiv_gameboy *gb, u16_t address)
 {
-    return gb->vram[address];
+    return gb->vram[address - 0x8000];
 }
 
 static void aiv_gb_memory_write_vram(aiv_gameboy *gb, u16_t address, u8_t value)
 {
-    gb->vram[address] = value;
+    gb->vram[address - 0x8000] = value;
 }
 
 static u8_t aiv_gb_memory_read_ram(aiv_gameboy *gb, u16_t address)
 {
-    return gb->ram[address];
+    return gb->ram[address - 0xc000];
 }
 
 static void aiv_gb_memory_write_ram(aiv_gameboy *gb, u16_t address, u8_t value)
 {
-    gb->ram[address] = value;
+    gb->ram[address - 0xc000] = value;
 }
 
 static u8_t aiv_gb_memory_read_external_ram(aiv_gameboy *gb, u16_t address)
 {
-    return gb->ram[address];
+    return gb->ram[address - 0xa000];
 }
 
 static void aiv_gb_memory_write_external_ram(aiv_gameboy *gb, u16_t address, u8_t value)
 {
-    gb->ram[address] = value;
+    gb->ram[address - 0xa000] = value;
 }
 
 static u8_t aiv_gb_memory_read_f000(aiv_gameboy *gb, u16_t address)
