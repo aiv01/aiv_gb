@@ -1,7 +1,7 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
 
-TEST(test_func)
+TEST(func_alessio)
 {
     aiv_gameboy gb;
     aiv_gb_init(&gb);
@@ -23,5 +23,5 @@ TEST(test_func)
 
 void aiv_gb_tests_run_func_alessio()
 {
-    RUN_TEST(test_func);
+    RUN_TEST(func_alessio);
 }
