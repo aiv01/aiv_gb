@@ -5,6 +5,7 @@ typedef unsigned char u8_t;
 typedef signed char s8_t;
 typedef unsigned short u16_t;
 typedef signed short s16_t;
+typedef unsigned int u32_t;
 typedef unsigned long long u64_t;
 
 #define ZERO 0x80
@@ -63,7 +64,7 @@ typedef struct aiv_gameboy
 
     // opcodes table, each entry is a pointer to a function
     int (*opcodes[256])(struct aiv_gameboy *);
-
+    int (*prefix_opcodes[256])(struct aiv_gameboy *);
     u8_t cartridge[CARTRIDGE_SIZE];
 
 } aiv_gameboy;
