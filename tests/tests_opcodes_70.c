@@ -227,7 +227,7 @@ TEST(ld_a_a)
 
     gb.a = 6;
 
-    gb.cartridge[0] = 0x7e;
+    gb.cartridge[0] = 0x7f;
 
     aiv_gb_tick(&gb);
 
