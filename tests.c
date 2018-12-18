@@ -26,11 +26,8 @@ void aiv_gb_tests_run_opcodes_e0();
 void aiv_gb_tests_run_opcodes_f0();
 
 void aiv_gb_tests_func_roberto();
-<<<<<<< Updated upstream
-void aiv_gb_tests_func_pierettini();
-=======
+//void aiv_gb_tests_func_pierettini();
 void aiv_gb_tests_func_massimo();
->>>>>>> Stashed changes
 
 int main(int argc, char **argv)
 {
