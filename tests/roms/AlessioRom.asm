@@ -12,9 +12,11 @@ LD D, $5
 LD A, $B
 RLA
 
-JR 1
+JR 2
 
+STOP 0
 LD DE, $03
+
 LD HL, $02
 ADD HL, DE
 
