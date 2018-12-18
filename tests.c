@@ -26,6 +26,7 @@ void aiv_gb_tests_run_opcodes_e0();
 void aiv_gb_tests_run_opcodes_f0();
 
 void aiv_gb_tests_func_roberto();
+void aiv_gb_tests_func_virginia();
 void aiv_gb_tests_func_pierettini();
 
 int main(int argc, char **argv)
@@ -48,7 +49,8 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_e0();
     aiv_gb_tests_run_opcodes_f0();
 
-    aiv_gb_tests_func_roberto();    
+    aiv_gb_tests_func_roberto();
+    aiv_gb_tests_func_virginia();
 
     PRINT_TEST_RESULTS();
     return 0;
