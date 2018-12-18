@@ -4,7 +4,7 @@
 static int aiv_gb_prefix_cb_50(aiv_gameboy *gb)
     {
         u8_t value = gb->b;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -22,7 +22,7 @@ static int aiv_gb_prefix_cb_50(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_51(aiv_gameboy *gb)
     {
         u8_t value = gb->c;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -40,7 +40,7 @@ static int aiv_gb_prefix_cb_51(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_52(aiv_gameboy *gb)
     {
         u8_t value = gb->d;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -58,7 +58,7 @@ static int aiv_gb_prefix_cb_52(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_53(aiv_gameboy *gb)
     {
         u8_t value = gb->e;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -76,7 +76,7 @@ static int aiv_gb_prefix_cb_53(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_54(aiv_gameboy *gb)
     {
         u8_t value = gb->h;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -94,7 +94,7 @@ static int aiv_gb_prefix_cb_54(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_55(aiv_gameboy *gb)
     {
         u8_t value = gb->l;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -112,7 +112,7 @@ static int aiv_gb_prefix_cb_55(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_56(aiv_gameboy *gb)
     {
         u8_t value = gb->hl;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -130,7 +130,7 @@ static int aiv_gb_prefix_cb_56(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_57(aiv_gameboy *gb)
     {
         u8_t value = gb->a;
-        if(value&0x01==0x04){
+        if(value & 0x04){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -148,7 +148,7 @@ static int aiv_gb_prefix_cb_57(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_58(aiv_gameboy *gb)
     {
         u8_t value = gb->b;
-        if(value&0x01==0x08){
+        if(value&0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -166,7 +166,7 @@ static int aiv_gb_prefix_cb_58(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_59(aiv_gameboy *gb)
     {
         u8_t value = gb->c;
-        if(value&0x01==0x08){
+        if(value&0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -184,7 +184,7 @@ static int aiv_gb_prefix_cb_59(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5a(aiv_gameboy *gb)
     {
         u8_t value = gb->d;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -202,7 +202,7 @@ static int aiv_gb_prefix_cb_5a(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5b(aiv_gameboy *gb)
     {
         u8_t value = gb->e;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -220,7 +220,7 @@ static int aiv_gb_prefix_cb_5b(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5c(aiv_gameboy *gb)
     {
         u8_t value = gb->h;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -238,7 +238,7 @@ static int aiv_gb_prefix_cb_5c(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5d(aiv_gameboy *gb)
     {
         u8_t value = gb->l;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -256,7 +256,7 @@ static int aiv_gb_prefix_cb_5d(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5e(aiv_gameboy *gb)
     {
         u8_t value = gb->hl;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
@@ -274,7 +274,7 @@ static int aiv_gb_prefix_cb_5e(aiv_gameboy *gb)
 static int aiv_gb_prefix_cb_5f(aiv_gameboy *gb)
     {
         u8_t value = gb->a;
-        if(value&0x01==0x04){
+        if(value & 0x08){
             aiv_gb_set_flag(gb,ZERO,0);
             aiv_gb_set_flag(gb,NEG,0);
             aiv_gb_set_flag(gb,HALF,1);
