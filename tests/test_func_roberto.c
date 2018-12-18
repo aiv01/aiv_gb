@@ -14,7 +14,6 @@ TEST(func_roberto)
     {
         ret = aiv_gb_tick(&gb);
     }
-    printf("a: %02x bc: %02x [%02x]\n", gb.a, gb.bc, aiv_gb_memory_read8(&gb, gb.bc));
     ASSERT_THAT(gb.a == 39);
 }
 
