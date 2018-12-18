@@ -6,7 +6,7 @@ int aiv_gb_tick(aiv_gameboy *gb)
     int ticks = gb->opcodes[opcode](gb);
     gb->ticks += ticks;
 
-    return 0;
+    return ticks;
 }
 
 int aiv_gb_loop(aiv_gameboy *gb)
@@ -54,7 +54,6 @@ void aiv_gb_init(aiv_gameboy *gb)
     aiv_gb_register_opcodes_90(gb);
     aiv_gb_register_opcodes_a0(gb);
     aiv_gb_register_opcodes_b0(gb);
-
 
     aiv_gb_register_opcodes_c0(gb);
 
