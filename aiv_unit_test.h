@@ -47,7 +47,7 @@ extern int tests_executed;
         tests_executed++;                                                                       \
         if (!failed)                                                                            \
         {                                                                                       \
-            fprintf(stdout, "[%s %s] %s:test_" #f "() \033[32mPASSED\033[0m\n", __DATE__, __TIME__, __FILE__); \
+            fprintf(stdout, "\033[32m[%s %s] %s:test_" #f "() PASSED\033[0m\n", __DATE__, __TIME__, __FILE__); \
             tests_succeded++;                                                                   \
         }                                                                                       \
     }                                                                                           \
@@ -55,7 +55,7 @@ extern int tests_executed;
 #define ASSERT_THAT(rule)                                                                                                           \
     if (!(rule))                                                                                                                    \
     {                                                                                                                               \
-        fprintf(stderr, "[%s %s] %s:%s \033[31mFAILED\033[0m at line %d: " #rule "\n", __DATE__, __TIME__, __FILE__, current_test_name, __LINE__); \
+        fprintf(stderr, "\033[31m[%s %s] %s:%s FAILED at line %d: " #rule "\033[0m\n", __DATE__, __TIME__, __FILE__, current_test_name, __LINE__); \
         *failed = -1;                                                                                                               \
         tests_failed++;                                                                                                             \
         return;                                                                                                                     \
