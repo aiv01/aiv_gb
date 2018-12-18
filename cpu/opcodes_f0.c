@@ -78,7 +78,7 @@ static int aiv_gb_opcode_fa(aiv_gameboy *gb)
 }
 
 // CP d8
-static int aiv_opcode_fe(aiv_gameboy *gb)
+static int aiv_gb_opcode_fe(aiv_gameboy *gb)
 {
     if (aiv_gb_memory_read8(gb, gb->pc) == gb->a)
     {
@@ -106,4 +106,18 @@ static int aiv_gb_opcode_ff(aiv_gameboy *gb)
     gb->pc = 0x0038;
 
     return 16;
+}
+
+void aiv_gb_register_opcodes_f0(aiv_gameboy *gb)
+{
+    gb->opcodes[0xf0] = aiv_gb_opcode_f0;
+    gb->opcodes[0xf1] = aiv_gb_opcode_f1;
+    gb->opcodes[0xf2] = aiv_gb_opcode_f2;
+    gb->opcodes[0xf5] = aiv_gb_opcode_f5;
+    gb->opcodes[0xf6] = aiv_gb_opcode_f6;
+    gb->opcodes[0xf7] = aiv_gb_opcode_f7;
+    gb->opcodes[0xf9] = aiv_gb_opcode_f9;
+    gb->opcodes[0xfa] = aiv_gb_opcode_fa;
+    gb->opcodes[0xfe] = aiv_gb_opcode_fe;
+    gb->opcodes[0xff] = aiv_gb_opcode_ff;
 }
