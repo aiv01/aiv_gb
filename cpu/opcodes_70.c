@@ -45,8 +45,7 @@ static int aiv_gb_opcode_75(aiv_gameboy *gb)
 //HALT
 static int aiv_gb_opcode_76(aiv_gameboy *gb)
 {
-    printf("HALT");
-    return 4;
+    return -4;
 }
 
 // LD (HL), A
