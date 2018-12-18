@@ -1,5 +1,6 @@
 CC=Clang
 CFLAGS=-O2 -Wall -Werror -I.
+
 OPCODES=$(patsubst %.c,%.o,$(wildcard cpu/*.c))
 TESTS=$(patsubst %.c,%.o,$(wildcard tests/*.c))
 BINARY=aiv_gb
@@ -21,10 +22,13 @@ cpu.o: cpu.c aiv_gb.h
 memory.o: memory.c aiv_gb.h
 	$(CC) -c -o $@ $(CFLAGS) $<
 
-tests/test_%.o: tests/test_%.c aiv_gb.h
+utils.o: utils.c aiv_gb.h
 	$(CC) -c -o $@ $(CFLAGS) $<
 
-test: cpu.o memory.o tests.o $(OPCODES) $(TESTS)
+tests/test_%.o: tests/test_%.c aiv_gb.h aiv_unit_test.h
+	$(CC) -c -o $@ $(CFLAGS) $<
+
+test: cpu.o memory.o tests.o utils.o $(OPCODES) $(TESTS)
 	$(CC) -o $(BINARY_TESTS) $(LDFLAGS) $^
 	./run_tests
 

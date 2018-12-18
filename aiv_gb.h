@@ -1,22 +1,18 @@
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef unsigned char u8_t;
 typedef signed char s8_t;
 typedef unsigned short u16_t;
 typedef signed short s16_t;
+typedef unsigned int u32_t;
 typedef unsigned long long u64_t;
 
-#define SET_Z(gb) gb->f |= 0x80
-#define UNSET_Z(gb) gb->f &= ~0x80
-
-#define SET_N(gb) gb->f |= 0x40
-#define UNSET_N(gb) gb->f &= ~0x40
-
-#define SET_H(gb) gb->f |= 0x20
-#define UNSET_H(gb) gb->f &= ~0x20
-
-#define SET_C(gb) gb->f |= 0x10
-#define UNSET_C(gb) gb->f &= ~0x10
+#define ZERO 0x80
+#define NEG 0x40
+#define HALF 0x20
+#define CARRY 0x10
 
 #define CARTRIDGE_SIZE 16384
 
@@ -69,6 +65,10 @@ typedef struct aiv_gameboy
 
     // opcodes table, each entry is a pointer to a function
     int (*opcodes[256])(struct aiv_gameboy *);
+    int (*prefix_opcodes[256])(struct aiv_gameboy *);
+
+    u8_t (*memory_read[16])(struct aiv_gameboy *, u16_t);
+    void (*memory_write[16])(struct aiv_gameboy *, u16_t, u8_t);
 
     u8_t cartridge[CARTRIDGE_SIZE];
 
@@ -85,3 +85,12 @@ void aiv_gb_register_opcodes_50(aiv_gameboy *gb);
 int aiv_gb_tick(aiv_gameboy *gb);
 int aiv_gb_loop(aiv_gameboy *gb);
 void aiv_gb_init(aiv_gameboy *gb);
+
+
+void aiv_gb_set_flag(aiv_gameboy *gb, u8_t flag, u8_t value);
+u8_t aiv_gb_get_flag(aiv_gameboy *gb, u8_t flag);
+
+void aiv_gb_memory_init(aiv_gameboy *gb);
+
+int aiv_gb_load_cartridge(aiv_gameboy *gb, const char *filename);
+
