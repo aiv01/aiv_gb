@@ -1,137 +1,424 @@
 #include <aiv_unit_test.h>
 #include <aiv_gb.h>
 
-TEST(prefixcb40_bit0_set)
+TEST(prefix_cb_40_bit0_set)
     {
         aiv_gameboy gb;
         aiv_gb_init(&gb);
 
-        gb.cartridge[0]=cb;
-        gb.cartridge[1]=40;
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x40;
         gb.b=0x01;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0x20);
     }
-    TEST(prefixcb40_bit0_unset)
+TEST(prefix_cb_40_bit0_unset)
     {
         aiv_gameboy gb;
         aiv_gb_init(&gb);
 
-        gb.cartridge[0]=cb;
-        gb.cartridge[1]=40;
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x40;
         gb.b=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb41)
+TEST(prefix_cb_41_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x41;
+        gb.c=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb42)
+TEST(prefix_cb_41_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x41;
+        gb.c=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb43)
+TEST(prefix_cb_42_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x42;
+        gb.d=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb44)
+TEST(prefix_cb_42_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x42;
+        gb.d=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb45)
+TEST(prefix_cb_43_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x43;
+        gb.e=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb46)
+TEST(prefix_cb_43_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x43;
+        gb.e=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb47)
+TEST(prefix_cb_44_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x44;
+        gb.h=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb48)
+TEST(prefix_cb_44_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x44;
+        gb.h=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb49)
+TEST(prefix_cb_45_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x45;
+        gb.l=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb4a)
+TEST(prefix_cb_45_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x45;
+        gb.l=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb4b)
+TEST(prefix_cb_46_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x46;
+        gb.hl=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb4c)
+TEST(prefix_cb_46_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x46;
+        gb.hl=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb4d)
+TEST(prefix_cb_47_bit0_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x47;
+        gb.a=0x01;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
-TEST(prefixcb4e)
+TEST(prefix_cb_47_bit0_unset)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x47;
+        gb.a=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
     }
-TEST(prefixcb4f)
+TEST(prefix_cb_48_bit1_set)
     {
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
-    aiv_gb_tick(&gb);
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x48;
+        gb.b=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
     }
+TEST(prefix_cb_48_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x48;
+        gb.b=0x00;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_49_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x49;
+        gb.c=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_49_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x49;
+        gb.c=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4a_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4a;
+        gb.d=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4a_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4a;
+        gb.d=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4b_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4b;
+        gb.e=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4b_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4b;
+        gb.e=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4c_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4c;
+        gb.h=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4c_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4c;
+        gb.h=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4d_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4d;
+        gb.l=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4d_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4d;
+        gb.l=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4e_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4e;
+        gb.hl=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4e_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4e;
+        gb.hl=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+TEST(prefix_cb_4f_bit1_set)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4f;
+        gb.a=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0x20);
+    }
+TEST(prefix_cb_4f_bit1_unset)
+    {
+        aiv_gameboy gb;
+        aiv_gb_init(&gb);
+
+        gb.cartridge[0]=0xcb;
+        gb.cartridge[1]=0x4f;
+        gb.a=0x02;
+        gb.f=0x00;
+        aiv_gb_tick(&gb);
+        ASSERT_THAT(gb.f==0xa0);
+    }
+
 
 void aiv_gb_tests_run_prefix_cb_40()
 {
-    RUN_TEST(prefixcb40);
-    RUN_TEST(prefixcb41);
-    RUN_TEST(prefixcb42);
-    RUN_TEST(prefixcb43);
-    RUN_TEST(prefixcb44);
-    RUN_TEST(prefixcb45);
-    RUN_TEST(prefixcb46);
-    RUN_TEST(prefixcb47);
-    RUN_TEST(prefixcb48);
-    RUN_TEST(prefixcb49);
-    RUN_TEST(prefixcb4a);
-    RUN_TEST(prefixcb4b);
-    RUN_TEST(prefixcb4c);
-    RUN_TEST(prefixcb4d);
-    RUN_TEST(prefixcb4e);
-    RUN_TEST(prefixcb4f);
+    RUN_TEST(prefix_cb_40_bit0_set);
+    RUN_TEST(prefix_cb_40_bit0_unset);
+    RUN_TEST(prefix_cb_41_bit0_set);
+    RUN_TEST(prefix_cb_41_bit0_unset);
+    RUN_TEST(prefix_cb_42_bit0_set);
+    RUN_TEST(prefix_cb_42_bit0_unset);
+    RUN_TEST(prefix_cb_43_bit0_set);
+    RUN_TEST(prefix_cb_43_bit0_unset);
+    RUN_TEST(prefix_cb_44_bit0_set);
+    RUN_TEST(prefix_cb_44_bit0_unset);
+    RUN_TEST(prefix_cb_45_bit0_set);
+    RUN_TEST(prefix_cb_45_bit0_unset);
+    RUN_TEST(prefix_cb_46_bit0_set);
+    RUN_TEST(prefix_cb_46_bit0_unset);
+    RUN_TEST(prefix_cb_47_bit0_set);
+    RUN_TEST(prefix_cb_47_bit0_unset);
+    RUN_TEST(prefix_cb_48_bit1_set);
+    RUN_TEST(prefix_cb_48_bit1_unset);
+    RUN_TEST(prefix_cb_49_bit1_set);
+    RUN_TEST(prefix_cb_49_bit1_unset);
+    RUN_TEST(prefix_cb_4a_bit1_set);
+    RUN_TEST(prefix_cb_4a_bit1_unset);
+    RUN_TEST(prefix_cb_4b_bit1_set);
+    RUN_TEST(prefix_cb_4b_bit1_unset);
+    RUN_TEST(prefix_cb_4c_bit1_set);
+    RUN_TEST(prefix_cb_4c_bit1_unset);
+    RUN_TEST(prefix_cb_4d_bit1_set);
+    RUN_TEST(prefix_cb_4d_bit1_unset);
+    RUN_TEST(prefix_cb_4e_bit1_set);
+    RUN_TEST(prefix_cb_4e_bit1_unset);
+    RUN_TEST(prefix_cb_4f_bit1_set);
+    RUN_TEST(prefix_cb_4f_bit1_unset);
 }
