@@ -8,8 +8,8 @@ TEST(test_func)
 
     ASSERT_THAT(aiv_gb_load_cartridge(&gb, "tests/roms/AlessioRom.gb") == 0);
 
-    u8_t ret = 1;
-    while(ret > 0)
+    u8_t ret = 0;
+    while(ret >= 0)
     {
         ret = aiv_gb_tick(&gb);
     }
