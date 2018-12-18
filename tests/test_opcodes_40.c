@@ -138,23 +138,7 @@ TEST(ld_in_b_a)
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
-TEST(ld_in_c_b)
-{
-    aiv_gameboy gb;
-    aiv_gb_init(&gb);
 
-    gb.c = 2;
-    gb.b = 1;
-
-    gb.cartridge[0] = 0x48;
-
-    aiv_gb_tick(&gb);
-
-    ASSERT_THAT(gb.c == 1);
-    ASSERT_THAT(gb.b == 1);
-    ASSERT_THAT(gb.ticks == 4);
-    ASSERT_THAT(gb.pc == 1);
-}
 TEST(ld_in_c_c)
 {
     aiv_gameboy gb;
@@ -187,6 +171,25 @@ TEST(ld_in_c_d)
     ASSERT_THAT(gb.ticks == 4);
     ASSERT_THAT(gb.pc == 1);
 }
+
+TEST(ld_in_c_b)
+{
+    aiv_gameboy gb;
+    aiv_gb_init(&gb);
+
+    gb.c = 2;
+    gb.b = 1;
+
+    gb.cartridge[0] = 0x4a;
+
+    aiv_gb_tick(&gb);
+
+    ASSERT_THAT(gb.c == 1);
+    ASSERT_THAT(gb.b == 1);
+    ASSERT_THAT(gb.ticks == 4);
+    ASSERT_THAT(gb.pc == 1);
+}
+
 TEST(ld_in_c_e)
 {
     aiv_gameboy gb;
@@ -274,25 +277,25 @@ TEST(ld_in_c_a)
     ASSERT_THAT(gb.pc == 1);
 }
 
-void aiv_gb_tests_run_opcodes_00()
+void aiv_gb_tests_run_opcodes_40()
 {
     RUN_TEST(ld_in_b_b);
     RUN_TEST(ld_in_b_c);
     RUN_TEST(ld_in_b_d);
-    RUN_TEST(ld_in_b_c);
-
     RUN_TEST(ld_in_b_e);
+
     RUN_TEST(ld_in_b_h);
     RUN_TEST(ld_in_b_l);
     RUN_TEST(ld_in_b_hl);
-
     RUN_TEST(ld_in_b_a);
+
     RUN_TEST(ld_in_c_b);
     RUN_TEST(ld_in_c_c);
     RUN_TEST(ld_in_c_d);
-
     RUN_TEST(ld_in_c_e);
+
     RUN_TEST(ld_in_c_h);
     RUN_TEST(ld_in_c_l);
-    RUN_TEST(ld_in_b_hl);
+    RUN_TEST(ld_in_c_hl);
+    RUN_TEST(ld_in_c_a);
 }
