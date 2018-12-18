@@ -38,27 +38,23 @@ void aiv_gb_init(aiv_gameboy *gb)
 {
     memset(gb, 0, sizeof(aiv_gameboy));
 
+
     aiv_gb_memory_init(gb);
 
     aiv_gb_register_opcodes_00(gb);
-    //aiv_gb_register_opcodes_10(gb);
+    aiv_gb_register_opcodes_10(gb);
     aiv_gb_register_opcodes_20(gb);
     aiv_gb_register_opcodes_30(gb);
-
-    //aiv_gb_register_opcodes_40(gb);
-    //aiv_gb_register_opcodes_50(gb);
+    aiv_gb_register_opcodes_40(gb);
+    aiv_gb_register_opcodes_50(gb);
     aiv_gb_register_opcodes_60(gb);
     aiv_gb_register_opcodes_70(gb);
-
     aiv_gb_register_opcodes_80(gb);
     aiv_gb_register_opcodes_90(gb);
     aiv_gb_register_opcodes_a0(gb);
     aiv_gb_register_opcodes_b0(gb);
-
     aiv_gb_register_opcodes_c0(gb);
-
     aiv_gb_register_opcodes_d0(gb);
-
-    //aiv_gb_register_opcodes_e0(gb);
-    //aiv_gb_register_opcodes_f0(gb);
+    aiv_gb_register_opcodes_e0(gb);
+    aiv_gb_register_opcodes_f0(gb);
 }

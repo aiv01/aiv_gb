@@ -29,19 +29,23 @@ void aiv_gb_tests_func_roberto();
 
 int main(int argc, char **argv)
 {
-    aiv_gb_tests_run_opcodes_30();
-    aiv_gb_tests_run_opcodes_00();
 
-    aiv_gb_tests_run_opcodes_c0();
-    aiv_gb_tests_run_opcodes_80();
-   
-    aiv_gb_tests_run_opcodes_b0();
-    aiv_gb_tests_run_opcodes_60();
+    aiv_gb_tests_run_opcodes_00();
+    aiv_gb_tests_run_opcodes_10();
     aiv_gb_tests_run_opcodes_20();
-    aiv_gb_tests_run_opcodes_90();
+    aiv_gb_tests_run_opcodes_30();
+    aiv_gb_tests_run_opcodes_40();
+    aiv_gb_tests_run_opcodes_50();
+    aiv_gb_tests_run_opcodes_60();
     aiv_gb_tests_run_opcodes_70();
+    aiv_gb_tests_run_opcodes_80();
+    aiv_gb_tests_run_opcodes_90();
     aiv_gb_tests_run_opcodes_a0();
+    aiv_gb_tests_run_opcodes_b0();
+    aiv_gb_tests_run_opcodes_c0();
     aiv_gb_tests_run_opcodes_d0();
+    aiv_gb_tests_run_opcodes_e0();
+    aiv_gb_tests_run_opcodes_f0();
 
     aiv_gb_tests_func_roberto();    
 
