@@ -52,10 +52,8 @@ int main(int argc, char **argv)
     aiv_gb_tests_run_opcodes_e0();
     aiv_gb_tests_run_opcodes_f0();
 
-
     aiv_gb_tests_func_roberto();   
     aiv_gb_tests_func_massimo();    
-  
     aiv_gb_tests_run_func_alessio();
 
     PRINT_TEST_RESULTS();
