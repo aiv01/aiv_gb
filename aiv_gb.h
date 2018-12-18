@@ -63,7 +63,7 @@ typedef struct aiv_gameboy
 
     // opcodes table, each entry is a pointer to a function
     int (*opcodes[256])(struct aiv_gameboy *);
-
+    int (*prefix_opcodes[256])(struct aiv_gameboy *);
     u8_t cartridge[CARTRIDGE_SIZE];
 
 } aiv_gameboy;

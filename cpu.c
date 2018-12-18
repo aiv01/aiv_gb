@@ -53,8 +53,11 @@ void aiv_gb_init(aiv_gameboy *gb)
     aiv_gb_register_opcodes_a0(gb);
     aiv_gb_register_opcodes_b0(gb);
 
-    //aiv_gb_register_opcodes_c0(gb);
+
+    aiv_gb_register_opcodes_c0(gb);
+
     aiv_gb_register_opcodes_d0(gb);
+
     //aiv_gb_register_opcodes_e0(gb);
     //aiv_gb_register_opcodes_f0(gb);
 }

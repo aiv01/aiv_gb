@@ -46,5 +46,6 @@ void aiv_gb_tests_run_opcodes_00()
 {
     RUN_TEST(nop);
     RUN_TEST(ld_bc_d16);
-    RUN_TEST(ld_addr_in_bc_a);
+    RUN_TEST(ld_addr_in_bc_a);    
 }
+
