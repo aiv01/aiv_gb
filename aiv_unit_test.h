@@ -9,6 +9,9 @@ extern int tests_failed;
 extern int tests_executed;
 
 #ifdef _WIN32
+#define RED_ON_BLACK 12
+#define GREEN_ON_BLACK 10
+#define WHITE_ON_BLACK 7
 #define TEST(f)                                                                                 \
     static void test_##f(const char *, int *);                                                  \
     static void run_test_##f()                                                                  \
@@ -19,9 +22,9 @@ extern int tests_executed;
         tests_executed++;                                                                       \
         if (!failed)                                                                            \
         {                                                                                       \
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);                       \
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), GREEN_ON_BLACK);           \
             fprintf(stdout, "[%s %s] %s:test_" #f "() PASSED\n", __DATE__, __TIME__, __FILE__); \
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);                        \
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE_ON_BLACK);           \
             tests_succeded++;                                                                   \
         }                                                                                       \
     }                                                                                           \
@@ -29,9 +32,9 @@ extern int tests_executed;
 #define ASSERT_THAT(rule)                                                                                                           \
     if (!(rule))                                                                                                                    \
     {                                                                                                                               \
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);                                                               \
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), RED_ON_BLACK);                                                     \
         fprintf(stderr, "[%s %s] %s:%s FAILED at line %d: " #rule "\n", __DATE__, __TIME__, __FILE__, current_test_name, __LINE__); \
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);                                                                \
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE_ON_BLACK);                                                   \
         *failed = -1;                                                                                                               \
         tests_failed++;                                                                                                             \
         return;                                                                                                                     \
