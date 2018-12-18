@@ -101,6 +101,15 @@ void aiv_gb_register_opcodes_c0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_d0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_e0(aiv_gameboy *gb);
 void aiv_gb_register_opcodes_f0(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_00(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_10(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_20(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_30(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_40(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_50(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_60(aiv_gameboy *gb);
+void aiv_gb_register_prefix_cb_70(aiv_gameboy *gb);
+
 
 int aiv_gb_tick(aiv_gameboy *gb);
 int aiv_gb_loop(aiv_gameboy *gb);
