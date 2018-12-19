@@ -60,27 +60,21 @@ int main(int argc, char **argv)
     //aiv_gb_tests_run_opcodes_c0();
     //aiv_gb_tests_run_opcodes_d0();
     aiv_gb_tests_run_opcodes_e0();
-<<<<<<< HEAD
-    //aiv_gb_tests_run_opcodes_f0();
-
-    //aiv_gb_tests_func_roberto();    
-=======
     //aiv_gb_tests_run_prefix_cb_00();
     //aiv_gb_tests_run_prefix_cb_10();
     //aiv_gb_tests_run_prefix_cb_20();
     //aiv_gb_tests_run_prefix_cb_30();
-    aiv_gb_tests_run_prefix_cb_40();
-    aiv_gb_tests_run_prefix_cb_50();
-    aiv_gb_tests_run_prefix_cb_60();
-    aiv_gb_tests_run_prefix_cb_70();
+    //aiv_gb_tests_run_prefix_cb_40();
+    //aiv_gb_tests_run_prefix_cb_50();
+    //aiv_gb_tests_run_prefix_cb_60();
+    //aiv_gb_tests_run_prefix_cb_70();
 
 
-    aiv_gb_tests_func_roberto();
-    aiv_gb_tests_func_roberto();   
-    aiv_gb_tests_func_massimo();    
-    aiv_gb_tests_run_func_alessio();
+    //aiv_gb_tests_func_roberto();
+    //aiv_gb_tests_func_roberto();   
+    //aiv_gb_tests_func_massimo();    
+    //aiv_gb_tests_run_func_alessio();
 
->>>>>>> 78df37ddd0ae84becf583f9d3843a973e89074af
 
     PRINT_TEST_RESULTS();
     return 0;

@@ -21,14 +21,15 @@ static int aiv_gb_opcode_e1(aiv_gameboy *gb)
 //LD (C) A
 static int aiv_gb_opcode_e2(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write8(gb, START_IO_REGISTER + gb->c, gb->a);
+    u16_t addr = START_IO_REGISTER + gb->c;
+    aiv_gb_memory_write8(gb, addr, gb->a);
     return 12;
 }
 
 //PUSH HL
 static int aiv_gb_opcode_e5(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write16(gb, gb->sp - 2, gb->hl);
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->hl);
     gb->sp -= 2;
     return 16;
 }
@@ -60,7 +61,7 @@ static int aiv_gb_opcode_e6(aiv_gameboy *gb)
 //RST 20H
 static int aiv_gb_opcode_e7(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write16(gb, gb->sp - 2, gb->pc);
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->pc);
     gb->pc = 0x0020;
     gb->sp -= 2;
     return 16;
