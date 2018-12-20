@@ -187,7 +187,6 @@ void aiv_gb_register_prefix_cb_00(aiv_gameboy *gb)
     gb->prefix_opcodes[0x05] = aiv_gb_prefix_cb_05;
     gb->prefix_opcodes[0x06] = aiv_gb_prefix_cb_06;
     gb->prefix_opcodes[0x07] = aiv_gb_prefix_cb_07;
-
 	gb->prefix_opcodes[0x08] = aiv_gb_prefix_cb_08;
 	gb->prefix_opcodes[0x09] = aiv_gb_prefix_cb_09;
 	gb->prefix_opcodes[0x0a] = aiv_gb_prefix_cb_0a;
