@@ -1,13 +1,13 @@
-segment "CODE", romA
+section "CODE", rom0
 
-LD b, 0x88
-LD c, 0x00
-LD h, 0xFF
-Ld d, 0xFF
-ld e, 0xFF
-LD l, 0xAA
+LD b, $88
+LD c, $00
+LD h, $FF
+Ld d, $FF
+ld e, $FF
+LD l, $AA
 
-LD a, 0x88
+LD a, $88
 and b
 and c
 and d
@@ -24,7 +24,7 @@ xor d
 xor e
 xor h
 xor l
-ld [hl],0xFF
+ld [hl], $FF
 xor [hl]
 xor a
 

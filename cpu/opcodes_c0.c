@@ -212,6 +212,12 @@ void aiv_gb_register_opcodes_c0(aiv_gameboy *gb)
     gb->opcodes[0xcd] = aiv_gb_opcode_cd;
     gb->opcodes[0xce] = aiv_gb_opcode_ce;
     gb->opcodes[0xcf] = aiv_gb_opcode_cf;
-    
-
-}
+    aiv_gb_register_prefix_cb_00(gb);
+    aiv_gb_register_prefix_cb_10(gb);
+    aiv_gb_register_prefix_cb_20(gb);
+    aiv_gb_register_prefix_cb_30(gb);
+    aiv_gb_register_prefix_cb_40(gb);
+    aiv_gb_register_prefix_cb_50(gb);
+    aiv_gb_register_prefix_cb_60(gb);
+    aiv_gb_register_prefix_cb_70(gb);
+    }
