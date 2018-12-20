@@ -208,11 +208,7 @@ static int aiv_gb_opcode_3d(aiv_gameboy *gb)
 //LD A,d8
 static int aiv_gb_opcode_3e(aiv_gameboy *gb)
 {
-
-    u8_t val = aiv_gb_memory_read8(gb, gb->sp + 1);
-    gb->a = val;
-    gb->sp++;
-
+    gb->a = aiv_gb_memory_read8(gb, gb->pc++);
     return 8;
 }
 
