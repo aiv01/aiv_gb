@@ -17,7 +17,7 @@ TEST(and_b_green_0){
     ASSERT_THAT((gb.f & ZERO) != ZERO);
     ASSERT_THAT(gb.a == 2);
     ASSERT_THAT(gb.ticks == 4);
-    ASSERT_THAT(gb.pc == 0);
+    ASSERT_THAT(gb.pc == 1);
 }
 TEST(and_b_green_1){
     aiv_gameboy gb;
