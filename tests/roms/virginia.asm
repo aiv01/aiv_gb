@@ -1,14 +1,13 @@
-section "code", romB
+section "code", rom0
 
+LD b, $00
+LD c, $00
+LD d, $88
+LD e, $88
+LD h, $FF
+LD l, $FF
 
-LD b, 0x00
-LD c, 0x00
-LD d, 0x88
-LD e, 0x88
-LD h, 0xFF
-LD l, 0xFF
-
-LD a, 0xAA
+LD a, $AA
 or b 
 or c
 or d
@@ -18,7 +17,6 @@ or l
 or [hl]
 or a
 
-ld f, 0x00
 cp b 
 cp c 
 cp d

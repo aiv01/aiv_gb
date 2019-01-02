@@ -106,7 +106,8 @@ TEST(halt)
     gb.cartridge[0] = 0x76;
     aiv_gb_tick(&gb);
     ASSERT_THAT(gb.ticks == 4);
-    ASSERT_THAT(gb.pc == 1);
+
+    ASSERT_THAT(gb.pc <= 0);
 }
 
 TEST(ld_addr_hl_a)
