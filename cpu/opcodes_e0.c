@@ -70,18 +70,19 @@ static int aiv_gb_opcode_e7(aiv_gameboy *gb)
 //ADD SP, r8
 static int aiv_gb_opcode_e8(aiv_gameboy *gb)
 {
-    s8_t s8 = aiv_gb_memory_read8(gb, gb->pc);
+    s8_t r8 = aiv_gb_memory_read8(gb, gb->pc);
     u16_t pre_sp = gb->sp;
 
-    if (s8 > 127)
+    if (r8 > 127)
     {
-        s8 = -((~s8 + 1) & 255);
+        r8 = -((~r8 + 1) & 255);
     }
+
     aiv_gb_set_flag(gb, ZERO, 0);
     aiv_gb_set_flag(gb, NEG, 0);
-    aiv_gb_set_flag(gb, HALF, (((gb->sp & 0x0f) - s8) & 0xf0));
+    aiv_gb_set_flag(gb, HALF, (((gb->sp & 0x0f) - r8) & 0xf0));
     gb->pc++;
-    gb->sp += s8;
+    gb->sp += r8;
     aiv_gb_set_flag(gb, CARRY, gb->sp < pre_sp);
 
     return 16;
@@ -98,7 +99,7 @@ static int aiv_gb_opcode_e9(aiv_gameboy *gb)
 static int aiv_gb_opcode_eA(aiv_gameboy *gb)
 {
     u16_t a16 = aiv_gb_memory_read16(gb, gb->pc);
-    aiv_gb_memory_write16(gb, a16, gb->a);
+    aiv_gb_memory_write8(gb, a16, gb->a);
     gb->pc += 2;
     return 16;
 }
@@ -125,7 +126,7 @@ static int aiv_gb_opcode_eE(aiv_gameboy *gb)
 //RST 28H
 static int aiv_gb_opcode_eF(aiv_gameboy *gb)
 {
-    aiv_gb_memory_write16(gb, gb->sp - 2, gb->pc);
+    aiv_gb_memory_write16(gb, gb->sp - 1, gb->pc);
     gb->pc = 0x0028;
     gb->sp -= 2;
     return 16;
