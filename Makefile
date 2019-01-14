@@ -1,4 +1,4 @@
-CC=D:\LLVM\bin\clang.exe
+CC=clang
 CFLAGS=-O2 -Wall -Werror -I.
 
 OPCODES=$(patsubst %.c,%.o,$(wildcard cpu/*.c))

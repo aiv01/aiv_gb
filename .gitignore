@@ -50,5 +50,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-tests/roms/marco_rinaldi.gb
-tests/test_func_marco_rinaldi.c
+
