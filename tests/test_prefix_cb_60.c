@@ -236,7 +236,7 @@ TEST(prefix_cb_69_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x69;
-        gb.c=0x02;
+        gb.c=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -260,7 +260,7 @@ TEST(prefix_cb_6a_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6a;
-        gb.d=0x02;
+        gb.d=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -284,7 +284,7 @@ TEST(prefix_cb_6b_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6b;
-        gb.e=0x02;
+        gb.e=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -308,7 +308,7 @@ TEST(prefix_cb_6c_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6c;
-        gb.h=0x02;
+        gb.h=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -332,7 +332,7 @@ TEST(prefix_cb_6d_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6d;
-        gb.l=0x02;
+        gb.l=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -356,7 +356,7 @@ TEST(prefix_cb_6e_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6e;
-        gb.hl=0x02;
+        gb.hl=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
@@ -380,7 +380,7 @@ TEST(prefix_cb_6f_bit5_unset)
 
         gb.cartridge[0]=0xcb;
         gb.cartridge[1]=0x6f;
-        gb.a=0x02;
+        gb.a=0x00;
         gb.f=0x00;
         aiv_gb_tick(&gb);
         ASSERT_THAT(gb.f==0xa0);
